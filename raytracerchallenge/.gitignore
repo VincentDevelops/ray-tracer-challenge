@@ -1,0 +1,14 @@
+/out/
+/build/
+/.vs/
+/CMakeFiles/
+/CMakeCache.txt
+*.exe
+*.obj
+*.pdb
+# vcpkg
+/vcpkg/
+/vcpkg_installed/
+/installed/
+/buildtrees/
+/packages/
