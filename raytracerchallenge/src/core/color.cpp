@@ -1,4 +1,7 @@
 #include "core/color.h"
+#include <limits>
+#include <cmath>
+#include <iostream>
 
 
 Color::Color(float r_, float g_, float b_)
@@ -6,11 +9,14 @@ Color::Color(float r_, float g_, float b_)
 }
 
 bool Color::operator==(const Color& other) const {
-	return (
-		r == other.r &&
-		g == other.g &&
-		b == other.b
-		);
+	if (std::fabs(r - other.r) > Color::EPSILON)
+		return false;
+	if (std::fabs(g - other.g) > Color::EPSILON)
+		return false;
+	if (std::fabs(b - other.b) > Color::EPSILON)
+		return false;
+
+	return true;
 }
 
 

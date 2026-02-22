@@ -5,6 +5,7 @@ struct Color {
 private:
 	static constexpr float BLACK = 0.0f;
 	static constexpr float WHITE = 1.0f;
+	static constexpr float EPSILON = 0.000001f;
 
 public: 
 
