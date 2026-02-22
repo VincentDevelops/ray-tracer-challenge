@@ -17,10 +17,11 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_library(rtc
   "src/rtc.cpp"
   "src/rtc.h"
- "src/core/tuple.cpp" "src/core/tuple.h")
+ "src/core/tuple.cpp" "src/core/tuple.h" 
+ "src/practice/chapter1_projectile.cpp" "src/practice/chapter1_projectile.h")
 
 add_executable(raytracerchallenge
-  "src/raytracerchallenge.cpp")
+  "src/raytracerchallenge.cpp" "src/practice/chapter1_projectile.cpp" "src/practice/chapter1_projectile.h")
 
 target_link_libraries(raytracerchallenge PRIVATE rtc)
 
