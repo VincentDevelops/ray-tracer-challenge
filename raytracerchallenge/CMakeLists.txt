@@ -17,11 +17,16 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_library(rtc
   "src/rtc.cpp"
   "src/rtc.h"
- "src/core/tuple.cpp" "src/core/tuple.h" 
- "src/practice/chapter1_projectile.cpp" "src/practice/chapter1_projectile.h" "src/core/color.h" "src/core/color.cpp")
+  "src/core/tuple.cpp" "src/core/tuple.h" 
+  "src/practice/chapter1_projectile.cpp" "src/practice/chapter1_projectile.h" 
+  "src/core/color.h" "src/core/color.cpp" 
+  "src/core/canvas.cpp" "src/core/canvas.h")
 
 add_executable(raytracerchallenge
-  "src/raytracerchallenge.cpp" "src/practice/chapter1_projectile.cpp" "src/practice/chapter1_projectile.h" "src/core/color.h" "src/core/color.cpp")
+  "src/raytracerchallenge.cpp" 
+  "src/practice/chapter1_projectile.cpp" "src/practice/chapter1_projectile.h" 
+  "src/core/color.h" "src/core/color.cpp" 
+  "src/core/canvas.cpp" "src/core/canvas.h")
 
 target_link_libraries(raytracerchallenge PRIVATE rtc)
 
@@ -30,7 +35,7 @@ find_package(Catch2 CONFIG REQUIRED)
 add_executable(rtc_tests
   "tests/tests.cpp"
  "tests/core/tuple.tests.cpp"
- "tests/core/color.tests.cpp")
+ "tests/core/color.tests.cpp" "tests/core/canvas.tests.cpp")
 
 target_link_libraries(rtc_tests PRIVATE rtc Catch2::Catch2WithMain)
 target_include_directories(rtc PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
