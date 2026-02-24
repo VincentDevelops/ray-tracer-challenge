@@ -20,13 +20,14 @@ add_library(rtc
   "src/core/tuple.cpp" "src/core/tuple.h" 
   "src/practice/chapter1_projectile.cpp" "src/practice/chapter1_projectile.h" 
   "src/core/color.h" "src/core/color.cpp" 
-  "src/core/canvas.cpp" "src/core/canvas.h")
+  "src/core/canvas.cpp" "src/core/canvas.h" "src/practice/chapter2_ppm.h")
 
 add_executable(raytracerchallenge
   "src/raytracerchallenge.cpp" 
   "src/practice/chapter1_projectile.cpp" "src/practice/chapter1_projectile.h" 
   "src/core/color.h" "src/core/color.cpp" 
-  "src/core/canvas.cpp" "src/core/canvas.h")
+  "src/core/canvas.cpp" "src/core/canvas.h" 
+  "src/practice/chapter2_ppm.h")
 
 target_link_libraries(raytracerchallenge PRIVATE rtc)
 

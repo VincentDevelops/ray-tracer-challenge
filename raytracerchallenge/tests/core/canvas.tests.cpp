@@ -4,11 +4,11 @@
 #include "core/canvas.h"
 #include "core/color.h"
 
-TEST_CASE("Constructing the PPM header") {
-	Canvas c(5, 3);
-	std::string ppm = c.canvas_to_ppm(c);
-
-}
+//TEST_CASE("Constructing the PPM header") {
+//	Canvas c(5, 3);
+//	std::string ppm = c.canvas_to_ppm(c);
+//
+//}
 
 TEST_CASE("Constructing the PPM header") {
     Canvas c(5, 3);
@@ -54,14 +54,14 @@ TEST_CASE("Constructing the PPM Pixel data") {
     REQUIRE(line1 == 
         "255 0 0 0 0 0 0 0 0 0 0 0 0 0 0");
     REQUIRE(line2 == 
-        "0 0 0 0 0 0 0 0 128 0 0 0 0 0 0");
+        "0 0 0 0 0 0 0 128 0 0 0 0 0 0 0");
     REQUIRE(line3 ==
-        "0 0 0 0 0 0 0 0 0 0 0 0 0 0 225");
+        "0 0 0 0 0 0 0 0 0 0 0 0 0 0 255");
 }
 
 TEST_CASE("Splitting long lines in PPM files") {
     Canvas c(10, 2);
-    c.fill_with(Color(1.0f, 0.8f, 0.6f);
+    c.fill_with(Color(1.0f, 0.8f, 0.6f));
    
     std::string ppm = Canvas::canvas_to_ppm(c);
     std::istringstream stream(ppm);
@@ -84,7 +84,7 @@ TEST_CASE("Splitting long lines in PPM files") {
     REQUIRE(l7 == "153 255 204 153 255 204 153 255 204 153 255 204 153");
 }
 
-TEST_CASE("PPM files are terminated by  newline character") {
+TEST_CASE("PPM files are terminated by a newline character") {
         Canvas c(5, 3);
         Color c1(1.5f, 0.0f, 0.0f),
             c2(0.0f, 0.5f, 0.0f),
@@ -95,25 +95,9 @@ TEST_CASE("PPM files are terminated by  newline character") {
         Canvas::write_pixel(c, 4, 2, c3);
 
         std::string ppm = Canvas::canvas_to_ppm(c);
-        std::istringstream stream(ppm);
 
-        std::string garbage;
-        std::getline(stream, garbage); // p3
-        std::getline(stream, garbage); // 5 3
-        std::getline(stream, garbage); // 255
-
-        std::string line1, line2, line3;
-
-        std::getline(stream, line1);
-        std::getline(stream, line2);
-        std::getline(stream, line3);
-
-        REQUIRE(line1 ==
-            "255 0 0 0 0 0 0 0 0 0 0 0 0 0 0");
-        REQUIRE(line2 ==
-            "0 0 0 0 0 0 0 0 128 0 0 0 0 0 0");
-        REQUIRE(line3 ==
-            "0 0 0 0 0 0 0 0 0 0 0 0 0 0 125\n");
-   }
+        REQUIRE(!ppm.empty());
+        REQUIRE(ppm.back() == '\n');
+}
     
 
