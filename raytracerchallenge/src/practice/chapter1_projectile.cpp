@@ -1,5 +1,8 @@
 #include "core/tuple.h"
+#include "core/canvas.h"
 #include <iostream>
+#include "chapter1_projectile.h"
+
 
 // Chapter 1 Putting It Together
 // - a projectile has a position (point) and velocity (vector)
@@ -9,36 +12,40 @@
 //	passes. unit is arbitrary at this point.
 
 
-#include "chapter1_projectile.h"
+// Chapter 2 putting it together
+// use the projectile to draw onto a ppm file
+
 
 void chapter1_projectile() {
 	
 	Projectile proj(Tuple::point(0.0f, 1.0f, 0.0f),
-		Tuple::normalize(Tuple::vector(1.0f, 1.0f, 0.0f)));
+		Tuple::normalize(Tuple::vector(0.5f, 1.2f, 0.0f) * 20.25));
 
 	Environment env(Tuple::vector(0.0f, -0.1f, 0.0f), 
 		Tuple::vector(-0.01f, 0.0f, 0.0f));
 
+	Canvas canvas(900, 950);
+	Color color(1.0, 0.0, 0.0);
+
 	int i = 0;
+	float scale = 100.0f;
+
 	while (proj.position.y > 0) {
 		proj = tick(env, proj);
-		std::cout << "run: " << i << std::endl;
-		std::cout << "x: ";
-		std::cout << proj.position.x << std::endl;
 
-		std::cout << "y: ";
-		std::cout << proj.position.y << std::endl;
+		int x = (int)(proj.position.x * scale);
+		int y = canvas.height - 1 - (int)(proj.position.y * scale);
 
-		std::cout << "z: ";
-		std::cout << proj.position.z << std::endl;
-		std::cout << "\n" << std::endl;
-		i++;
-
-		proj.velocity.x *= 1.5;
-		proj.velocity.z *= 1.2;
-
+		if (x >= 0 && x < canvas.width && y >= 0 && y < canvas.height) {
+			canvas.write_pixel(x, y, color);
+			canvas.write_pixel(x + 1, y, color);
+			canvas.write_pixel(x - 1, y, color);
+			canvas.write_pixel(x, y + 1, color);
+			canvas.write_pixel(x, y - 1, color);
+		}
 	}
 
+	canvas.save_ppm("test_1.ppm");
 
 }
 
