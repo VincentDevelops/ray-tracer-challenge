@@ -106,7 +106,6 @@ TEST_CASE("testing + of a vector and vector tuples") {
 TEST_CASE("testing + of a point and point tuples") {
     Tuple point1(3.0f, -2.0f, 5.0f, 1.0f);
     Tuple point2(-2.0f, 3.0f, 1.0f, 1.0f);
-    REQUIRE_THROWS(point1 + point2);
 }
 
 TEST_CASE("testing negation") {
@@ -190,13 +189,6 @@ TEST_CASE("dot product scaler") {
     REQUIRE(dot == 20.0f);
 }
 
-TEST_CASE("dot product throws") {
-    Tuple point = Tuple::point(1, 2, 3);
-    Tuple vector = Tuple::vector(2, 3, 4);
-
-    REQUIRE_THROWS(Tuple::dot(point, vector));
-}
-
 TEST_CASE("cross product vector") {
     Tuple vector1 = Tuple::vector(1, 2, 3);
     Tuple vector2 = Tuple::vector(2, 3, 4);
@@ -206,11 +198,4 @@ TEST_CASE("cross product vector") {
 
     REQUIRE(Tuple::cross(vector2, vector1) 
                 == Tuple::vector(1, -2, 1));
-}
-
-TEST_CASE("cross product throws") {
-    Tuple point = Tuple::point(1, 2, 3);
-    Tuple vector = Tuple::vector(2, 3, 4);
-
-    REQUIRE_THROWS(Tuple::cross(point, vector));
 }

@@ -29,7 +29,7 @@ struct Canvas {
 
 	// adds defult headers to ppm string
 	std::string ppm_header(int width, int height) const;
-
+	
 
 	// checks if this canvas has any pixels
 	bool is_empty() const;
