@@ -8,7 +8,7 @@ Canvas::Canvas(int w, int h)
     fill_with(Color(0, 0, 0));
 }
 
-void Canvas::fill_with(Color c) {
+void Canvas::fill_with(const Color& c) {
     if (is_empty())
         return;
 
@@ -24,20 +24,26 @@ void Canvas::write_pixel(int x, int y, Color c) {
     pixels[y * width + x] = c;
 }
 
+int Canvas::index(int x, int y) const {
+    return y * width + x;
+}
+
 bool Canvas::is_empty() const {
     return pixels.empty();
 }
 
 Color Canvas::pixel_at(int x, int y) const {
-    return pixels[y * width + x];
+    return pixels[index(x,y)];
 }
 
-Color Canvas::pixel_at(Canvas c, int x, int y) {
+Color Canvas::pixel_at(const Canvas& c, int x, int y) {
     return c.pixel_at(x, y);
 }
 
 void Canvas::write_pixel(Canvas& canvas, int x, int y, const Color& color) {
-    if (canvas.is_empty()) return;
+    if (!canvas.in_bounds(x, y))
+        return;
+
     canvas.pixels[y * canvas.width + x] = color;
 }
 
