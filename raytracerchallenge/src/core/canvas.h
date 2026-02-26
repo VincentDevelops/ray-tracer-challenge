@@ -18,7 +18,7 @@ struct Canvas {
 
 
 	// fills entire canvas with a certain color
-	void fill_with(Color c);
+	void fill_with(const Color& c);
 
 
 	//void fill_with(Tuple x1, Tuple x2, Tuple y1, Tuple y2);
@@ -28,21 +28,26 @@ struct Canvas {
 	void save_ppm(const std::string& filename) const;
 
 	// adds defult headers to ppm string
-	std::string ppm_header(int width, int height) const;
+	[[nodiscard]] std::string ppm_header(int width, int height) const;
 
+	int index(int x, int y) const;
 
 	// checks if this canvas has any pixels
-	bool is_empty() const;
+	[[nodiscard]] bool is_empty() const;
 
+	// checks for point validity
+	[[nodiscard]] constexpr bool in_bounds(int x, int y) const {
+		return x >= 0 && x < width && y >= 0 && y < height;
+	}
 
 	// retrieves pixel (Color) found at coordinates x,y
 	// must be used by Canvas object
-	Color pixel_at(int x, int y) const;
+	[[nodiscard]] Color pixel_at(int x, int y) const;
 
 
 
 	// retrieves pixel (Color) found at coordinates x,y
-	static Color pixel_at(const Canvas c, int x, int y);
+	[[nodiscard]] static Color pixel_at(const Canvas& c, int x, int y);
 
 	// Writes a Color (a.k.a pixel) at coordinate x, y
 	static void write_pixel(Canvas& canvas, int x, int y, const Color& color);
@@ -50,7 +55,7 @@ struct Canvas {
 
 	// Exports the canvas as a correctly 
 	// formatted PPM image string.
-	static std::string canvas_to_ppm(const Canvas& c);
+	[[nodiscard]] static std::string canvas_to_ppm(const Canvas& c);
 
 };
 

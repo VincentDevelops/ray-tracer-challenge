@@ -6,33 +6,38 @@
 struct Tuple {
 
 private:
-	static constexpr float VECTOR	= 0.0f;
-	static constexpr float POINT	= 1.0f;
-	static constexpr float DEFAULT	= 0.0f;
-	static constexpr float EPSILON	= 0.000001f;
+	static constexpr float VECTOR = 0.0f;
+	static constexpr float POINT = 1.0f;
+	static constexpr float DEFAULT = 0.0f;
+	static constexpr float EPSILON = 0.000001f;
 
 public:
 
 
-	float x;
-	float y;
-	float z;
-	float w;
+	float x = DEFAULT;
+	float y = DEFAULT;
+	float z = DEFAULT;
+	float w = POINT;
 
 	// Constructor for a Tuple point at (0,0,0)
-	Tuple();
+	constexpr Tuple() = default;
 
 	// Constructor for a Tuple at (x,y,z) and wither point
 	//  or vector with w (1 - point / 0 - vector)
-	Tuple(float new_x, float new_y, float new_z, float new_w);
+	constexpr Tuple(float x_, float y_, float z_, float w_)
+		: x(x_), y(y_), z(z_), w(w_) {}
+	
 	
 
-
 	// returns true if Tuple is a vector
-	bool is_vector() const;
+	constexpr bool is_vector() const {
+		return w == VECTOR;
+	}
 
 	// returns true if Tuple is a point
-	bool is_point() const;
+	constexpr bool is_point() const {
+		return w == POINT;
+	}
 
 
 
@@ -41,29 +46,50 @@ public:
 	// ================================================
 
 	// returns a point Tuple at coordinates (x,y,z)
-	static Tuple point(float new_x, float new_y, float new_z);
+	constexpr static Tuple point(float new_x, float new_y, float new_z) {
+		return Tuple(new_x, new_y, new_z, POINT);
+	}
 	
 	// retuns a point Tuple at default coordinates
-	static Tuple point();
+	constexpr static Tuple point() {
+		return Tuple(DEFAULT, DEFAULT, DEFAULT, POINT);
+	}
 	
 	// returns a vector Tuple with attributes (x,y,z)
-	static Tuple vector(float new_x, float new_y, float new_z);
+	constexpr static Tuple vector(float new_x, float new_y, float new_z) {
+		return Tuple(new_x, new_y, new_z, Tuple::VECTOR);
+	}
 	
 	// returns a vector Tuple with default attributes
-	static Tuple vector();
+	constexpr static Tuple vector() {
+		return Tuple(DEFAULT, DEFAULT, DEFAULT, VECTOR);
+	}
 
-	static Tuple normalize(const Tuple& vector);
+	[[nodiscard]] static Tuple normalize(const Tuple& vector);
 
 	// returns the cross product of two vectors
 	//  logic error thrown if at least one is not a vector
-	static Tuple cross(const Tuple& vector1, const Tuple& vector2);
+	[[nodiscard]] constexpr static Tuple cross(const Tuple& vector1, const Tuple& vector2) {
+
+		float new_x = vector1.y * vector2.z - vector1.z * vector2.y;
+		float new_y = vector1.z * vector2.x - vector1.x * vector2.z;
+		float new_z = vector1.x * vector2.y - vector1.y * vector2.x;
+
+		return Tuple::vector(new_x, new_y, new_z);
+	}
 	
 	// returns the magnitude of a vector - vector tuple required
-	static float magnitude(const Tuple &vector);
+	[[nodiscard]] static float magnitude(const Tuple &vector);
 
 	// returns the dot product of two vectors
 	//  logic error thrown if at least one is not a vector
-	static float dot(const Tuple& vector1, const Tuple& vector2);
+	[[nodiscard]] constexpr static float dot(const Tuple& vector1, const Tuple& vector2) {
+
+		return
+			vector1.x * vector2.x +
+			vector1.y * vector2.y +
+			vector1.z * vector2.z;
+	}
 	
 
 	// ================================================
@@ -72,24 +98,47 @@ public:
 
 	// returns true if this object has equal attributes
 	//  to other
-	bool operator==(const Tuple& other) const;
+	[[nodiscard]] bool operator==(const Tuple& other) const;
 
 	// returns a Tuple with added attributes of calling
 	//  Tuple and other could be either vector or point
-	Tuple operator+(const Tuple& other) const;
+	[[nodiscard]] constexpr Tuple operator+(const Tuple& other) const {
+		return Tuple(x + other.x, y + other.y, z + other.z, w + other.w);
+	}
 	
 	// returns a Tuple with subtracted attributes of calling
 	//  Tuple and other, could be either vector or point
-	Tuple operator-(const Tuple& other) const;
+	[[nodiscard]] constexpr Tuple operator-(const Tuple& other) const {
+		return Tuple(x - other.x, y - other.y, z - other.z, w - other.w);
+	}
 
 	// returns a negated tuple
-	Tuple operator-() const;
+	[[nodiscard]] constexpr Tuple operator-() const {
+		return Tuple(-x, -y, -z, -w);
+	}
+
 
 	// returns a scaled vector through multiplication
-	Tuple operator*(const float& scaler) const;
+	[[nodiscard]] constexpr Tuple operator*(float scaler) const {
+		float new_x = x * scaler;
+		float new_y = y * scaler;
+		float new_z = z * scaler;
+		float new_w = w * scaler;
+
+		return Tuple(new_x, new_y, new_z, new_w);
+	}
 
 	// returns a scaled vector through division
-	Tuple operator/(const float& scler) const;
+	[[nodiscard]] constexpr Tuple operator/(float scaler) const {
+
+		float new_x = x / scaler;
+		float new_y = y / scaler;
+		float new_z = z / scaler;
+		float new_w = w / scaler;
+
+		return Tuple(new_x, new_y, new_z, new_w);
+
+	}
 
 	
 };
