@@ -35,8 +35,11 @@ find_package(Catch2 CONFIG REQUIRED)
 
 add_executable(rtc_tests
   "tests/tests.cpp"
- "tests/core/tuple.tests.cpp"
- "tests/core/color.tests.cpp" "tests/core/canvas.tests.cpp")
+  "tests/core/tuple.tests.cpp"
+  "tests/core/color.tests.cpp"
+  "tests/core/canvas.tests.cpp"
+  "tests/core/matrix.tests.cpp"
+)
 
 target_link_libraries(rtc_tests PRIVATE rtc Catch2::Catch2WithMain)
 target_include_directories(rtc PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
