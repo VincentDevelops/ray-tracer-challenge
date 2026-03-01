@@ -212,33 +212,33 @@ TEST_CASE("Multiplying two matrices") {
 	REQUIRE(C(3, 3) == 42.0f);
 
 }
-//
-//TEST_CASE("A matrix multiplied by a Tuple") {
-//	Matrix A(4);
-//	Tuple b(1, 2, 3, 1);
-//
-//	A(0, 0) = 1.0f;
-//	A(0, 1) = 2.0f;
-//	A(0, 2) = 3.0f;
-//	A(0, 3) = 4.0f;
-//
-//	A(1, 0) = 5.0f;
-//	A(1, 1) = 6.0f;
-//	A(1, 2) = 7.0f;
-//	A(1, 3) = 8.0f;
-//
-//	A(2, 0) = 9.0f;
-//	A(2, 1) = 8.0f;
-//	A(2, 2) = 7.0f;
-//	A(2, 3) = 6.0f;
-//
-//	A(3, 0) = 5.0f;
-//	A(3, 1) = 4.0f;
-//	A(3, 2) = 3.0f;
-//	A(3, 3) = 2.0f;
-//
-//	REQUIRE((A * b) == Tuple(18, 24, 33, 1));
-//}
+
+TEST_CASE("A matrix multiplied by a Tuple") {
+	Matrix A(4);
+	Tuple b(1, 2, 3, 1);
+
+	A(0, 0) = 1.0f;
+	A(0, 1) = 2.0f;
+	A(0, 2) = 3.0f;
+	A(0, 3) = 4.0f;
+
+	A(1, 0) = 2.0f;
+	A(1, 1) = 4.0f;
+	A(1, 2) = 4.0f;
+	A(1, 3) = 2.0f;
+
+	A(2, 0) = 8.0f;
+	A(2, 1) = 6.0f;
+	A(2, 2) = 4.0f;
+	A(2, 3) = 1.0f;
+
+	A(3, 0) = 0.0f;
+	A(3, 1) = 0.0f;
+	A(3, 2) = 0.0f;
+	A(3, 3) = 1.0f;
+
+	REQUIRE((A * b) == Tuple(18, 24, 33, 1));
+}
 //
 //TEST_CASE("Multiplying a matrix by the identiy matrix") {
 //	Matrix A(4);
