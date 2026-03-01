@@ -1,6 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/catch_approx.hpp>
 #include "core/matrix.h"
+#include "core/tuple.h"
 
 TEST_CASE("Constructing and inspecting a 4x4 matrix") {
 	Matrix m(4);
@@ -239,57 +240,59 @@ TEST_CASE("A matrix multiplied by a Tuple") {
 
 	REQUIRE((A * b) == Tuple(18, 24, 33, 1));
 }
-//
-//TEST_CASE("Multiplying a matrix by the identiy matrix") {
-//	Matrix A(4);
-//	A(0, 0) = 1.0f;
-//	A(0, 1) = 2.0f;
-//	A(0, 2) = 3.0f;
-//	A(0, 3) = 4.0f;
-//
-//	A(1, 0) = 5.0f;
-//	A(1, 1) = 6.0f;
-//	A(1, 2) = 7.0f;
-//	A(1, 3) = 8.0f;
-//
-//	A(2, 0) = 9.0f;
-//	A(2, 1) = 8.0f;
-//	A(2, 2) = 7.0f;
-//	A(2, 3) = 6.0f;
-//
-//	A(3, 0) = 5.0f;
-//	A(3, 1) = 4.0f;
-//	A(3, 2) = 3.0f;
-//	A(3, 3) = 2.0f;
-//
-//	REQUIRE(A * A.identity_matrix() == A);
-//}
-//
-//TEST_CASE("Multiplying the identiy matrix by a tuple") {
-//	Matrix A(4);
-//	Tuple tuple(1, 2, 3, 4);
-//	A(0, 0) = 1.0f;
-//	A(0, 1) = 2.0f;
-//	A(0, 2) = 3.0f;
-//	A(0, 3) = 4.0f;
-//
-//	A(1, 0) = 5.0f;
-//	A(1, 1) = 6.0f;
-//	A(1, 2) = 7.0f;
-//	A(1, 3) = 8.0f;
-//
-//	A(2, 0) = 9.0f;
-//	A(2, 1) = 8.0f;
-//	A(2, 2) = 7.0f;
-//	A(2, 3) = 6.0f;
-//
-//	A(3, 0) = 5.0f;
-//	A(3, 1) = 4.0f;
-//	A(3, 2) = 3.0f;
-//	A(3, 3) = 2.0f;
-//
-//	REQUIRE(A.identiy_matrix() * tuple == tuple);
-//}
+
+TEST_CASE("Multiplying a matrix by the identiy matrix") {
+	Matrix A(4);
+	A(0, 0) = 1.0f;
+	A(0, 1) = 2.0f;
+	A(0, 2) = 3.0f;
+	A(0, 3) = 4.0f;
+
+	A(1, 0) = 5.0f;
+	A(1, 1) = 6.0f;
+	A(1, 2) = 7.0f;
+	A(1, 3) = 8.0f;
+
+	A(2, 0) = 9.0f;
+	A(2, 1) = 8.0f;
+	A(2, 2) = 7.0f;
+	A(2, 3) = 6.0f;
+
+	A(3, 0) = 5.0f;
+	A(3, 1) = 4.0f;
+	A(3, 2) = 3.0f;
+	A(3, 3) = 2.0f;
+
+	REQUIRE(A * A.identity() == A);
+}
+
+TEST_CASE("Multiplying the identity matrix by a Tuple") {
+	Matrix A(4);
+	Tuple tuple(1, 2, 3, 4);
+
+	A(0, 0) = 1.0f;
+	A(0, 1) = 2.0f;
+	A(0, 2) = 3.0f;
+	A(0, 3) = 4.0f;
+
+	A(1, 0) = 5.0f;
+	A(1, 1) = 6.0f;
+	A(1, 2) = 7.0f;
+	A(1, 3) = 8.0f;
+
+	A(2, 0) = 9.0f;
+	A(2, 1) = 8.0f;
+	A(2, 2) = 7.0f;
+	A(2, 3) = 6.0f;
+
+	A(3, 0) = 5.0f;
+	A(3, 1) = 4.0f;
+	A(3, 2) = 3.0f;
+	A(3, 3) = 2.0f;
+
+	REQUIRE(A.identity() * tuple == tuple);
+}
+
 //
 //TEST_CASE("Transposing a matrix") {
 //	Matrix A(4);
