@@ -4,11 +4,6 @@
 #include "core/canvas.h"
 #include "core/color.h"
 
-//TEST_CASE("Constructing the PPM header") {
-//	Canvas c(5, 3);
-//	std::string ppm = c.canvas_to_ppm(c);
-//
-//}
 
 TEST_CASE("Constructing the PPM header") {
     Canvas c(5, 3);
