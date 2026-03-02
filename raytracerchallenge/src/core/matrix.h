@@ -30,43 +30,59 @@ public:
 		grid.resize(r * c);
 	}
 
+	// returns the size of the vector the matrix
+	// is stored in
 	[[nodiscard]] std::size_t size() const {
 		return rows * columns;
 	}
 
+	// returns the number of rows in the matrix
 	[[nodiscard]] std::size_t row_size() const {
 		return rows;
 	}
 
+	// returns the number of columns in the matrix
 	[[nodiscard]] std::size_t col_size() const {
 		return columns;
 	}
 
+	// returns element at a specific coordinate
 	[[nodiscard]] float element_at(std::size_t row, std::size_t column) const {
 		return grid[row * columns + column];
 	}
 
+	// returns the element at element in grid
+	// does not account for specific row/column
 	[[nodiscard]] float element_at(std::size_t index) const {
 		return grid.at(index);
 	}
 
+	// fills matrix with 1's diagonally from top left to bottom right
+	//  all other elements are left with 0.0f
 	[[nodiscard]] Matrix identity() const {
 		assert(row_size() == col_size());
 
 		Matrix out(row_size(), col_size());
-		for (int i = 0; i < row_size(); i++)
-			out(i, i) = 1.0f;
+		for (std::size_t diagonal = 0; diagonal < row_size(); diagonal++)
+			out(diagonal, diagonal) = 1.0f;
 
 		return out;
 	}
+
+	// Turns the first row into a column, the second row into a second
+	// column, and so forth.
+	[[nodiscard]] static Matrix transpose(const Matrix matrix);
 
 
 	// ================================================
 	// OPERATOR OVERLOADS =============================
 	// ================================================
 
+	// retrieves true if every value in the matrix at index i
+	// is the same between two matricees of the same 
+	// row and column size.
 	bool operator==(const Matrix& other) const {
-		if (size() != other.size())
+		if (row_size() != other.row_size() || col_size() != other.col_size())
 			return false;
 
 		for (std::size_t i = 0; i < static_cast<std::size_t>(grid.size()); i++)
@@ -76,16 +92,24 @@ public:
 		return true;
 	}
 
-	float& operator()(std::size_t row, std::size_t col) {
+	// allows to modify value at specific (row, column)
+	[[nodiscard]] float& operator()(std::size_t row, std::size_t col) {
 		return grid[row * columns +col];
 	}
 
-	const float& operator()(std::size_t row, std::size_t col) const {
+	// retrieves value at (row,column)
+	[[nodiscard]] const float& operator()(std::size_t row, std::size_t col) const {
 		return grid[row * columns + col];
 	}
 
+	// Multiplication of two matricies, product of which is returned as a new matrix.
+	// Allows for the multiplication of two matricees of any size 
+	// so long as the row size of the left matrix is the same value as 
+	// the column size of the right matrix.
 	[[nodiscard]] Matrix operator*(const Matrix& other) const;
 
+	// returns the product of a Tuple and Matrix, returning a Tuple.
+	// This can only be done with a 4x4 matrix.
 	[[nodiscard]] Tuple operator*(const Tuple& t) const;
 
 };

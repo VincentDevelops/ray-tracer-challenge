@@ -293,55 +293,77 @@ TEST_CASE("Multiplying the identity matrix by a Tuple") {
 	REQUIRE(A.identity() * tuple == tuple);
 }
 
-//
-//TEST_CASE("Transposing a matrix") {
-//	Matrix A(4);
-//	A(0, 0) = 0.0f;
-//	A(0, 1) = 9.0f;
-//	A(0, 2) = 3.0f;
-//	A(0, 3) = 0.0f;
-//
-//	A(1, 0) = 9.0f;
-//	A(1, 1) = 8.0f;
-//	A(1, 2) = 0.0f;
-//	A(1, 3) = 8.0f;
-//
-//	A(2, 0) = 1.0f;
-//	A(2, 1) = 8.0f;
-//	A(2, 2) = 5.0f;
-//	A(2, 3) = 3.0f;
-//
-//	A(3, 0) = 0.0f;
-//	A(3, 1) = 0.0f;
-//	A(3, 2) = 5.0f;
-//	A(3, 3) = 8.0f;
-//
-//	Matrix C = Matrix::transpose(A);
-//	REQUIRE(C(0, 0) == 0.0f);
-//	REQUIRE(C(0, 1) == 9.0f);
-//	REQUIRE(C(0, 2) == 1.0f);
-//	REQUIRE(C(0, 3) == 0.0f);
-//
-//	REQUIRE(C(1, 0) == 9.0f);
-//	REQUIRE(C(1, 1) == 8.0f);
-//	REQUIRE(C(1, 2) == 8.0f);
-//	REQUIRE(C(1, 3) == 0.0f);
-//
-//	REQUIRE(C(2, 0) == 3.0f);
-//	REQUIRE(C(2, 1) == 0.0f);
-//	REQUIRE(C(2, 2) == 5.0f);
-//	REQUIRE(C(2, 3) == 5.0f);
-//
-//	REQUIRE(C(3, 0) == 0.0f);
-//	REQUIRE(C(3, 1) == 8.0f);
-//	REQUIRE(C(3, 2) == 3.0f);
-//	REQUIRE(C(3, 3) == 8.0f);
-//}
-//
-////TEST_CASE("Transposing the identity matrix") {
-////
-////}
-//
+
+TEST_CASE("Transposing a matrix") {
+	Matrix A(4);
+	A(0, 0) = 0.0f;
+	A(0, 1) = 9.0f;
+	A(0, 2) = 3.0f;
+	A(0, 3) = 0.0f;
+
+	A(1, 0) = 9.0f;
+	A(1, 1) = 8.0f;
+	A(1, 2) = 0.0f;
+	A(1, 3) = 8.0f;
+
+	A(2, 0) = 1.0f;
+	A(2, 1) = 8.0f;
+	A(2, 2) = 5.0f;
+	A(2, 3) = 3.0f;
+
+	A(3, 0) = 0.0f;
+	A(3, 1) = 0.0f;
+	A(3, 2) = 5.0f;
+	A(3, 3) = 8.0f;
+
+	Matrix C = Matrix::transpose(A);
+	REQUIRE(C(0, 0) == 0.0f);
+	REQUIRE(C(0, 1) == 9.0f);
+	REQUIRE(C(0, 2) == 1.0f);
+	REQUIRE(C(0, 3) == 0.0f);
+
+	REQUIRE(C(1, 0) == 9.0f);
+	REQUIRE(C(1, 1) == 8.0f);
+	REQUIRE(C(1, 2) == 8.0f);
+	REQUIRE(C(1, 3) == 0.0f);
+
+	REQUIRE(C(2, 0) == 3.0f);
+	REQUIRE(C(2, 1) == 0.0f);
+	REQUIRE(C(2, 2) == 5.0f);
+	REQUIRE(C(2, 3) == 5.0f);
+
+	REQUIRE(C(3, 0) == 0.0f);
+	REQUIRE(C(3, 1) == 8.0f);
+	REQUIRE(C(3, 2) == 3.0f);
+	REQUIRE(C(3, 3) == 8.0f);
+}
+
+TEST_CASE("Transposing the identity matrix") {
+	Matrix A(4);
+	A(0, 0) = 0.0f;
+	A(0, 1) = 9.0f;
+	A(0, 2) = 3.0f;
+	A(0, 3) = 0.0f;
+
+	A(1, 0) = 9.0f;
+	A(1, 1) = 8.0f;
+	A(1, 2) = 0.0f;
+	A(1, 3) = 8.0f;
+
+	A(2, 0) = 1.0f;
+	A(2, 1) = 8.0f;
+	A(2, 2) = 5.0f;
+	A(2, 3) = 3.0f;
+
+	A(3, 0) = 0.0f;
+	A(3, 1) = 0.0f;
+	A(3, 2) = 5.0f;
+	A(3, 3) = 8.0f;
+
+	Matrix transposed_identity = Matrix::transpose(A.identity());
+	REQUIRE(transposed_identity == A.identity());
+}
+
 //TEST_CASE("Calculating the determinant of a 2x2 matrix") {
 //	Matrix A(2);
 //	A(0, 0) = 1.0f;

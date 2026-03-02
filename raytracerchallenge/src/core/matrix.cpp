@@ -1,6 +1,43 @@
 #include "core/matrix.h"
 #include "core/tuple.h"
 
+
+Matrix Matrix::transpose(const Matrix matrix) {
+    Matrix out(matrix.columns, matrix.rows);
+
+    // Block size: tuneable. 16 or 32 are common good defaults for floats
+    constexpr std::size_t BLOCK = 32;
+
+    const std::size_t R = matrix.rows;
+    const std::size_t C = matrix.columns;
+
+    // Blocked transpose for better cache locality on large matrices
+    for (std::size_t r0 = 0; r0 < R; r0 += BLOCK) {
+        const std::size_t rMax = std::min(r0 + BLOCK, R);
+
+        for (std::size_t c0 = 0; c0 < C; c0 += BLOCK) {
+            const std::size_t cMax = std::min(c0 + BLOCK, C);
+
+            for (std::size_t r = r0; r < rMax; ++r) {
+                const std::size_t srcBase = r * C;
+
+                for (std::size_t c = c0; c < cMax; ++c) {
+                    // out(c, r) = matrix(r, c)
+                    out.grid[c * out.columns + r] = matrix.grid[srcBase + c];
+                }
+            }
+        }
+    }
+
+    return out;
+}
+
+
+// ================================================
+// OPERATOR OVERLOADS =============================
+// ================================================
+
+
 Tuple Matrix::operator*(const Tuple& t) const {
 	assert(row_size() == 4 && col_size() == 4);
 
