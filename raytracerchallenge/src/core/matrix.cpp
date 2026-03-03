@@ -1,6 +1,15 @@
 #include "core/matrix.h"
 #include "core/tuple.h"
 
+float Matrix::determinant_2x2(const Matrix& matrix) {
+    return (matrix(0, 0) * matrix(1, 1)) - (matrix(0, 1) * matrix(1, 0));
+}
+
+
+// ================================================
+// STATIC FUNCTIONS ===============================
+// ================================================
+
 
 Matrix Matrix::transpose(const Matrix matrix) {
     Matrix out(matrix.columns, matrix.rows);
@@ -8,28 +17,37 @@ Matrix Matrix::transpose(const Matrix matrix) {
     // Block size: tuneable. 16 or 32 are common good defaults for floats
     constexpr std::size_t BLOCK = 32;
 
-    const std::size_t R = matrix.rows;
-    const std::size_t C = matrix.columns;
+    const std::size_t ROWS = matrix.rows;
+    const std::size_t COLS = matrix.columns;
 
     // Blocked transpose for better cache locality on large matrices
-    for (std::size_t r0 = 0; r0 < R; r0 += BLOCK) {
-        const std::size_t rMax = std::min(r0 + BLOCK, R);
+    for (std::size_t r0 = 0; r0 < ROWS; r0 += BLOCK) {
+        const std::size_t rowMax = std::min(r0 + BLOCK, ROWS);
 
-        for (std::size_t c0 = 0; c0 < C; c0 += BLOCK) {
-            const std::size_t cMax = std::min(c0 + BLOCK, C);
+        for (std::size_t c0 = 0; c0 < COLS; c0 += BLOCK) {
+            const std::size_t colMax = std::min(c0 + BLOCK, COLS);
 
-            for (std::size_t r = r0; r < rMax; ++r) {
-                const std::size_t srcBase = r * C;
+            for (std::size_t row = r0; row < rowMax; ++row) {
+                const std::size_t srcBase = row * COLS;
 
-                for (std::size_t c = c0; c < cMax; ++c) {
-                    // out(c, r) = matrix(r, c)
-                    out.grid[c * out.columns + r] = matrix.grid[srcBase + c];
+                for (std::size_t col = c0; col < colMax; ++col) {
+                    // out(col, row) = matrix(row, col)
+                    out.grid[col * out.columns + row] = matrix.grid[srcBase + col];
                 }
             }
         }
     }
 
     return out;
+}
+
+float Matrix::determinant() {
+    assert(row_size() == col_size());
+
+    switch (row_size()) {
+    case 2:
+        return determinant_2x2(*this);
+    }
 }
 
 

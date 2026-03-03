@@ -14,6 +14,7 @@ private:
 	std::size_t columns = 0;
 	std::vector<float> grid;
 
+	[[nodiscard]] float determinant_2x2(const Matrix& matrix);
 
 public:
 
@@ -57,6 +58,10 @@ public:
 		return grid.at(index);
 	}
 
+	// retruns the determinant of a matrix
+	// currently only supports a 2x2 matrix
+	[[nodiscard]] float determinant();
+
 	// fills matrix with 1's diagonally from top left to bottom right
 	//  all other elements are left with 0.0f
 	[[nodiscard]] Matrix identity() const {
@@ -69,10 +74,18 @@ public:
 		return out;
 	}
 
+	
+
+
+	// ================================================
+	// STATIC FUNCTIONS ===============================
+	// ================================================
+
 	// Turns the first row into a column, the second row into a second
 	// column, and so forth.
 	[[nodiscard]] static Matrix transpose(const Matrix matrix);
-
+	
+	
 
 	// ================================================
 	// OPERATOR OVERLOADS =============================

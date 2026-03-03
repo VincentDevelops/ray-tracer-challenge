@@ -364,15 +364,15 @@ TEST_CASE("Transposing the identity matrix") {
 	REQUIRE(transposed_identity == A.identity());
 }
 
-//TEST_CASE("Calculating the determinant of a 2x2 matrix") {
-//	Matrix A(2);
-//	A(0, 0) = 1.0f;
-//	A(0, 1) = 5.0f;
-//	A(1, 0) = -3.0f;
-//	A(1, 1) = 2.0f;
-//
-//	REQUIRE(Matrix::determinant(A) == 17.0f);
-//}
+TEST_CASE("Calculating the determinant of a 2x2 matrix") {
+	Matrix A(2);
+	A(0, 0) = 1.0f;
+	A(0, 1) = 5.0f;
+	A(1, 0) = -3.0f;
+	A(1, 1) = 2.0f;
+
+	REQUIRE(A.determinant() == 17.0f);
+}
 //
 //TEST_CASE("A submatrix of 3x3 matrix is a 2x2 matrix") {
 //	Matrix A(3);
