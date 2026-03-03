@@ -7,6 +7,12 @@
       "project": "raytracerchallenge\\CMakeLists.txt",
       "projectTarget": "raytracerchallenge.exe",
       "name": "raytracerchallenge.exe"
+    },
+    {
+      "type": "default",
+      "project": "raytracerchallenge\\CMakeLists.txt",
+      "projectTarget": "rtc_tests.exe",
+      "name": "rtc_tests.exe"
     }
   ]
 }
