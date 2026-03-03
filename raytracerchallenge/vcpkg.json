@@ -3,5 +3,6 @@
   "version-string": "0.1.0",
   "dependencies": [
     "catch2"
-  ]
+  ],
+  "builtin-baseline": "39a6cc0e44641977a7ccdfdb01a14eaf832aa330"
 }
