@@ -24,7 +24,8 @@ add_library(rtc
   "src/practice/chapter2_ppm.h" 
   "src/core/matrix.h" "src/core/matrix.cpp" 
   "src/core/constants.h" 
-  "src/core/math_utils.h")
+  "src/core/math_utils.h" 
+  "src/practice/chapter3_matrices.cpp" "src/practice/chapter3_matrices.h")
 
 add_executable(raytracerchallenge
   "src/raytracerchallenge.cpp" 
@@ -34,7 +35,8 @@ add_executable(raytracerchallenge
   "src/practice/chapter2_ppm.h" 
   "src/core/matrix.h" "src/core/matrix.cpp" 
   "src/core/constants.h" 
-  "src/core/math_utils.h")
+  "src/core/math_utils.h" 
+  "src/practice/chapter3_matrices.cpp" "src/practice/chapter3_matrices.h")
 
 target_link_libraries(raytracerchallenge PRIVATE rtc)
 

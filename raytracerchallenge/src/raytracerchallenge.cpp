@@ -4,16 +4,11 @@
 #include "raytracerchallenge.h"
 #include "core/tuple.h"
 #include "practice/chapter1_projectile.h"
+#include "practice/chapter3_matrices.h"
 
 using namespace std;
 
 int main()
 {
-	chapter1_projectile();
-
-	Tuple tuple;
-	cout << tuple.x << endl;
-
-	cout << "Hello CMake." << endl;
-	return 0;
+	invert_identity();
 }
