@@ -490,87 +490,87 @@ TEST_CASE("Calculating a determinant of a 3x3 matrix") {
 	REQUIRE(A.cofactor(0, 2) == -46.0f);
 	REQUIRE(A.determinant() == -196.0f);
 }
-//
-//TEST_CASE("Calculating the determinant of a 4x4 matrix") {
-//	Matrix A(4);
-//	A(0, 0) = -2.0f;
-//	A(0, 1) = -8.0f;
-//	A(0, 2) = 3.0f;
-//	A(0, 3) = 5.0f;
-//
-//	A(1, 0) = -3.0f;
-//	A(1, 1) = 1.0f;
-//	A(1, 2) = 7.0f;
-//	A(1, 3) = 3.0f;
-//
-//	A(2, 0) = 1.0f;
-//	A(2, 1) = 2.0f;
-//	A(2, 2) = -9.0f;
-//	A(2, 3) = 6.0f;
-//
-//	A(3, 0) = -6.0f;
-//	A(3, 1) = 7.0f;
-//	A(3, 2) = 7.0f;
-//	A(3, 3) = -9.0f;
-//
-//	REQUIRE(Matrix::cofactor(A, 0, 0) == 690.0f);
-//	REQUIRE(Matrix::cofactor(A, 0, 1) == 447.0f);
-//	REQUIRE(Matrix::cofactor(A, 0, 2) == 210.0f);
-//	REQUIRE(Matrix::cofactor(A, 0, 3) == 51.0f);
-//	REQUIRE(Matrix::determinant(A) == -4071.0f);
-//}
-//
-//TEST_CASE("Testing an invertible matrix for invertibility") {
-//	Matrix A(4);
-//	A(0, 0) = 6.0f;
-//	A(0, 1) = 4.0f;
-//	A(0, 2) = 4.0f;
-//	A(0, 3) = 4.0f;
-//
-//	A(1, 0) = 5.0f;
-//	A(1, 1) = 5.0f;
-//	A(1, 2) = 7.0f;
-//	A(1, 3) = 6.0f;
-//
-//	A(2, 0) = 4.0f;
-//	A(2, 1) = -9.0f;
-//	A(2, 2) = 3.0f;
-//	A(2, 3) = -7.0f;
-//
-//	A(3, 0) = 9.0f;
-//	A(3, 1) = 1.0f;
-//	A(3, 2) = 7.0f;
-//	A(3, 3) = -6.0f;
-//
-//	REQUIRE(Matrix::determinant(A) = -2120.0f);
-//	REQUIRE(A.is_invertible() == true);
-//}
-//
-//TEST_CASE("Testing a noninvertible matrix for invertibility") {
-//	Matrix A(4);
-//	A(0, 0) = -4.0f;
-//	A(0, 1) = 2.0f;
-//	A(0, 2) = -2.0f;
-//	A(0, 3) = -3.0f;
-//
-//	A(1, 0) = 9.0f;
-//	A(1, 1) = 6.0f;
-//	A(1, 2) = 2.0f;
-//	A(1, 3) = 6.0f;
-//
-//	A(2, 0) = 0.0f;
-//	A(2, 1) = -5.0f;
-//	A(2, 2) = 1.0f;
-//	A(2, 3) = -5.0f;
-//
-//	A(3, 0) = 0.0f;
-//	A(3, 1) = 0.0f;
-//	A(3, 2) = 0.0f;
-//	A(3, 3) = 0.0f;
-//
-//	REQUIRE(Matrix::determinant(A) == 0);
-//	REQUIRE(A.is_invertible() == false);
-//}
+
+TEST_CASE("Calculating the determinant of a 4x4 matrix") {
+	Matrix A(4);
+	A(0, 0) = -2.0f;
+	A(0, 1) = -8.0f;
+	A(0, 2) = 3.0f;
+	A(0, 3) = 5.0f;
+
+	A(1, 0) = -3.0f;
+	A(1, 1) = 1.0f;
+	A(1, 2) = 7.0f;
+	A(1, 3) = 3.0f;
+
+	A(2, 0) = 1.0f;
+	A(2, 1) = 2.0f;
+	A(2, 2) = -9.0f;
+	A(2, 3) = 6.0f;
+
+	A(3, 0) = -6.0f;
+	A(3, 1) = 7.0f;
+	A(3, 2) = 7.0f;
+	A(3, 3) = -9.0f;
+
+	REQUIRE(A.cofactor(0, 0) == 690.0f);
+	REQUIRE(A.cofactor(0, 1) == 447.0f);
+	REQUIRE(A.cofactor(0, 2) == 210.0f);
+	REQUIRE(A.cofactor(0, 3) == 51.0f);
+	REQUIRE(A.determinant() == -4071.0f);
+}
+
+TEST_CASE("Testing an invertible matrix for invertibility") {
+	Matrix A(4);
+	A(0, 0) = 6.0f;
+	A(0, 1) = 4.0f;
+	A(0, 2) = 4.0f;
+	A(0, 3) = 4.0f;
+
+	A(1, 0) = 5.0f;
+	A(1, 1) = 5.0f;
+	A(1, 2) = 7.0f;
+	A(1, 3) = 6.0f;
+
+	A(2, 0) = 4.0f;
+	A(2, 1) = -9.0f;
+	A(2, 2) = 3.0f;
+	A(2, 3) = -7.0f;
+
+	A(3, 0) = 9.0f;
+	A(3, 1) = 1.0f;
+	A(3, 2) = 7.0f;
+	A(3, 3) = -6.0f;
+
+	REQUIRE(A.determinant() == -2120.0f);
+	REQUIRE(A.is_invertible() == true);
+}
+
+TEST_CASE("Testing a noninvertible matrix for invertibility") {
+	Matrix A(4);
+	A(0, 0) = -4.0f;
+	A(0, 1) = 2.0f;
+	A(0, 2) = -2.0f;
+	A(0, 3) = -3.0f;
+
+	A(1, 0) = 9.0f;
+	A(1, 1) = 6.0f;
+	A(1, 2) = 2.0f;
+	A(1, 3) = 6.0f;
+
+	A(2, 0) = 0.0f;
+	A(2, 1) = -5.0f;
+	A(2, 2) = 1.0f;
+	A(2, 3) = -5.0f;
+
+	A(3, 0) = 0.0f;
+	A(3, 1) = 0.0f;
+	A(3, 2) = 0.0f;
+	A(3, 3) = 0.0f;
+
+	REQUIRE(A.determinant() == 0);
+	REQUIRE(A.is_invertible() == false);
+}
 //
 //TEST_CASE("Calculating the inverse of a matrix") {
 //	Matrix A(4);

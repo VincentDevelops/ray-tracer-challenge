@@ -32,6 +32,11 @@ public:
 		grid.resize(r * c);
 	}
 
+	// ================================================
+	// GENERAL FUNCTIONS ==============================
+	// ================================================
+
+
 	// returns the size of the vector the matrix
 	// is stored in
 	[[nodiscard]] std::size_t size() const {
@@ -59,17 +64,28 @@ public:
 		return grid.at(index);
 	}
 
-	// retruns the determinant of a matrix
+	// returns the determinant of a matrix
 	// currently only supports a 2x2 matrix
 	// | a b |  determinant = ad - bc
 	// | c d |
 	[[nodiscard]] float determinant() const;
 
-	[[nodiscard]] float minor(std::size_t row_, std::size_t col_) const;
+	// Returns the determinant of the submatrix at (row, col)
+	[[nodiscard]] float minor(std::size_t row_, std::size_t col_) const {
+		return submatrix(row_, col_).determinant();
+	}
 
+	// returns a positive or negative minor depending on included (rol, col) used
+	// ex | + - + |
+	//    | - = - |  if a coordinate lies in a (-) the minor will be negative
+	//	  | + - + |
 	[[nodiscard]] float cofactor(std::size_t row_, std::size_t col_) const {
 		float m = minor(row_, col_);
 		return ((row_ + col_) % 2 == 0) ? m : -m;
+	}
+
+	[[nodiscard]] bool is_invertible() const {
+		return (determinant() != 0);
 	}
 
 	// fills matrix with 1's diagonally from top left to bottom right
