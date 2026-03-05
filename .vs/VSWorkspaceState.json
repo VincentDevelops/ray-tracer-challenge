@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\raytracerchallenge"
+    "\\raytracerchallenge",
+    "\\raytracerchallenge\\src",
+    "\\raytracerchallenge\\src\\core"
   ],
-  "SelectedNode": "\\raytracerchallenge\\CMakeLists.txt",
+  "SelectedNode": "\\raytracerchallenge\\src\\core",
   "PreviewInSolutionExplorer": false
 }

@@ -42,7 +42,8 @@
               "RelativeToolTip": "..\\..\\..\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake",
               "ViewState": "AgIAAKYDAAAAAAAAAAAQwLgDAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-03-05T06:02:15.852Z"
+              "WhenOpened": "2026-03-05T06:02:15.852Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -52,7 +53,7 @@
               "RelativeDocumentMoniker": "raytracerchallenge\\CMakePresets.json",
               "ToolTip": "C:\\dev\\raytracerchallenge\\ray-tracer-challenge\\raytracerchallenge\\CMakePresets.json",
               "RelativeToolTip": "raytracerchallenge\\CMakePresets.json",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB8AAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-03-05T05:53:13.205Z",
               "EditorCaption": ""
@@ -67,7 +68,8 @@
               "RelativeToolTip": "..\\..\\..\\Program Files\\Microsoft Visual Studio\\18\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-4.1\\Modules\\CMakeDetermineSystem.cmake",
               "ViewState": "AgIAAIsAAAAAAAAAAAAwwJQAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-03-05T05:52:29.5Z"
+              "WhenOpened": "2026-03-05T05:52:29.5Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -79,7 +81,8 @@
               "RelativeToolTip": "raytracerchallenge\\CMakeLists.txt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2026-03-05T05:51:57.229Z"
+              "WhenOpened": "2026-03-05T05:51:57.229Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -91,7 +94,8 @@
               "RelativeToolTip": "..\\..\\..\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake",
               "ViewState": "AgIAAKcDAAAAAAAAAAAIwLgDAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-03-05T05:51:52.679Z"
+              "WhenOpened": "2026-03-05T05:51:52.679Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -100,7 +104,8 @@
               "DocumentMoniker": "CMake Overview Pages",
               "ToolTip": "CMake Overview Pages",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-03-05T05:51:49.585Z"
+              "WhenOpened": "2026-03-05T05:51:49.585Z",
+              "EditorCaption": ""
             }
           ]
         }
