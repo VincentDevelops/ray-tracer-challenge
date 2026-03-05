@@ -105,6 +105,7 @@ public:
 	// will always produce a new matrix of size (row - 1) * (col - 1)
 	[[nodiscard]] Matrix submatrix(std::size_t d_row, std::size_t d_col) const;
 
+	[[nodiscard]] Matrix inverse() const;
 
 	// ================================================
 	// STATIC FUNCTIONS ===============================

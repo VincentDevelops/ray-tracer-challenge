@@ -2,6 +2,7 @@
 #include <catch2/catch_approx.hpp>
 #include "core/matrix.h"
 #include "core/tuple.h"
+#include "core/constants.h"
 
 TEST_CASE("Constructing and inspecting a 4x4 matrix") {
 	Matrix m(4);
@@ -571,145 +572,145 @@ TEST_CASE("Testing a noninvertible matrix for invertibility") {
 	REQUIRE(A.determinant() == 0);
 	REQUIRE(A.is_invertible() == false);
 }
-//
-//TEST_CASE("Calculating the inverse of a matrix") {
-//	Matrix A(4);
-//	A(0, 0) = -5.0f;
-//	A(0, 1) = 2.0f;
-//	A(0, 2) = 6.0f;
-//	A(0, 3) = -8.0f;
-//
-//	A(1, 0) = 1.0f;
-//	A(1, 1) = -5.0f;
-//	A(1, 2) = 1.0f;
-//	A(1, 3) = 8.0f;
-//
-//	A(2, 0) = 7.0f;
-//	A(2, 1) = 7.0f;
-//	A(2, 2) = -6.0f;
-//	A(2, 3) = -7.0f;
-//
-//	A(3, 0) = 1.0f;
-//	A(3, 1) = -3.0f;
-//	A(3, 2) = 7.0f;
-//	A(3, 3) = 4.0f;
-//
-//	Matrix B = Matrix::inverse(A);
-//
-//	REQUIRE(Matrix::determinant(A) == 532);
-//	REQUIRE(Matrix::cofactor(A, 2, 3) == -160);
-//	REQUIRE(B(3, 2) == (-160 / 532));
-//	REQUIRE(Matrix::cofactor(A, 3, 2) == 105);
-//	REQUIRE(B(2, 3) == (105 / 532));
-//
-//	REQUIRE(B(0, 0) == 0.21805f);
-//	REQUIRE(B(0, 1) == 0.45113f);
-//	REQUIRE(B(0, 2) == 0.24060f);
-//	REQUIRE(B(0, 3) == -0.04511f);
-//	
-//	REQUIRE(B(1, 0) == -0.80827f);
-//	REQUIRE(B(1, 1) == -1.45677f);
-//	REQUIRE(B(1, 2) == -0.44361f);
-//	REQUIRE(B(1, 3) == 0.52068f);
-//
-//	REQUIRE(B(2, 0) == -0.07895f);
-//	REQUIRE(B(2, 1) == -0.22368f);
-//	REQUIRE(B(2, 2) == -0.05263f);
-//	REQUIRE(B(2, 3) == 0.19737f);
-//
-//	REQUIRE(B(3, 0) == -0.52256f);
-//	REQUIRE(B(3, 1) == -0.81391f);
-//	REQUIRE(B(3, 2) == -0.30075f);
-//	REQUIRE(B(3, 3) == 0.30639f);
-//}
-//
-//TEST_CASE("Calculating the inverse of another matrix") {
-//	Matrix A(4);
-//	A(0, 0) = 8.0f;
-//	A(0, 1) = -5.0f;
-//	A(0, 2) = 9.0f;
-//	A(0, 3) = 2.0f;
-//
-//	A(1, 0) = 7.0f;
-//	A(1, 1) = 5.0f;
-//	A(1, 2) = 6.0f;
-//	A(1, 3) = 1.0f;
-//
-//	A(2, 0) = -6.0f;
-//	A(2, 1) = 0.0f;
-//	A(2, 2) = 9.0f;
-//	A(2, 3) = 6.0f;
-//
-//	A(3, 0) = -3.0f;
-//	A(3, 1) = 0.0f;
-//	A(3, 2) = -9.0f;
-//	A(3, 3) = -4.0f;
-//
-//	Matrix B = Matrix::inverse(A);
-//	REQUIRE(B(0, 0) == -0.15385f);
-//	REQUIRE(B(0, 1) == -0.15385f);
-//	REQUIRE(B(0, 2) == -0.28205f);
-//	REQUIRE(B(0, 3) == -0.53846f);
-//
-//	REQUIRE(B(1, 0) == -0.07692f);
-//	REQUIRE(B(1, 1) == 0.12308f);
-//	REQUIRE(B(1, 2) == 0.02564f);
-//	REQUIRE(B(1, 3) == 0.03077f);
-//
-//	REQUIRE(B(2, 0) == 0.35897f);
-//	REQUIRE(B(2, 1) == 0.35897f);
-//	REQUIRE(B(2, 2) == 0.43590f);
-//	REQUIRE(B(2, 3) == 0.92308f);
-//
-//	REQUIRE(B(3, 0) == -0.69231f);
-//	REQUIRE(B(3, 1) == -0.69231f);
-//	REQUIRE(B(3, 2) == -0.76923f);
-//	REQUIRE(B(3, 3) == -1.92308f);
-//}
-//
-//TEST_CASE("Calculating the inverse of a third matrix") {
-//	Matrix A(4);
-//	A(0, 0) = 9.0f;
-//	A(0, 1) = 3.0f;
-//	A(0, 2) = 0.0f;
-//	A(0, 3) = 9.0f;
-//
-//	A(1, 0) = -5.0f;
-//	A(1, 1) = -2.0f;
-//	A(1, 2) = -6.0f;
-//	A(1, 3) = -3.0f;
-//
-//	A(2, 0) = -4.0f;
-//	A(2, 1) = 9.0f;
-//	A(2, 2) = 6.0f;
-//	A(2, 3) = 4.0f;
-//
-//	A(3, 0) = -7.0f;
-//	A(3, 1) = 6.0f;
-//	A(3, 2) = 6.0f;
-//	A(3, 3) = 2.0f;
-//
-//	Matrix B = Matrix::inverse(A);
-//	REQUIRE(B(0, 0) == -0.04074f);
-//	REQUIRE(B(0, 1) == -0.07778f);
-//	REQUIRE(B(0, 2) == 0.14444f);
-//	REQUIRE(B(0, 3) == -0.22222f);
-//
-//	REQUIRE(B(1, 0) == -0.07778f);
-//	REQUIRE(B(1, 1) == 0.03333f);
-//	REQUIRE(B(1, 2) == 0.36667f);
-//	REQUIRE(B(1, 3) == -0.33333f);
-//
-//	REQUIRE(B(2, 0) == -0.02901f);
-//	REQUIRE(B(2, 1) == -0.14630f);
-//	REQUIRE(B(2, 2) == -0.10926f);
-//	REQUIRE(B(2, 3) == 0.12963f);
-//
-//	REQUIRE(B(3, 0) == 0.17778f);
-//	REQUIRE(B(3, 1) == 0.06667f);
-//	REQUIRE(B(3, 2) == -0.26667f);
-//	REQUIRE(B(3, 3) == 0.33333f);
-//}
+
+TEST_CASE("Calculating the inverse of a matrix") {
+	Matrix A(4);
+	A(0, 0) = -5.0f;
+	A(0, 1) = 2.0f;
+	A(0, 2) = 6.0f;
+	A(0, 3) = -8.0f;
+
+	A(1, 0) = 1.0f;
+	A(1, 1) = -5.0f;
+	A(1, 2) = 1.0f;
+	A(1, 3) = 8.0f;
+
+	A(2, 0) = 7.0f;
+	A(2, 1) = 7.0f;
+	A(2, 2) = -6.0f;
+	A(2, 3) = -7.0f;
+
+	A(3, 0) = 1.0f;
+	A(3, 1) = -3.0f;
+	A(3, 2) = 7.0f;
+	A(3, 3) = 4.0f;
+
+	Matrix B = A.inverse();
+
+	REQUIRE(A.determinant() == 532);
+	REQUIRE(A.cofactor(2, 3) == -160);
+	REQUIRE(B(3, 2) == Catch::Approx(-160.0f / 532.0f).margin(rtc::EPSILON));
+	REQUIRE(A.cofactor(3, 2) == 105);
+	REQUIRE(B(2, 3) == Catch::Approx(105.0f / 532.0f).margin(rtc::EPSILON));
+
+	REQUIRE(B(0, 0) == Catch::Approx(0.21805f).margin(rtc::EPSILON));
+	REQUIRE(B(0, 1) == Catch::Approx(0.45113f).margin(rtc::EPSILON));
+	REQUIRE(B(0, 2) == Catch::Approx(0.24060f).margin(rtc::EPSILON));
+	REQUIRE(B(0, 3) == Catch::Approx(-0.04511f).margin(rtc::EPSILON));
+
+	REQUIRE(B(1, 0) == Catch::Approx(-0.80827f).margin(rtc::EPSILON));
+	REQUIRE(B(1, 1) == Catch::Approx(-1.45677f).margin(rtc::EPSILON));
+	REQUIRE(B(1, 2) == Catch::Approx(-0.44361f).margin(rtc::EPSILON));
+	REQUIRE(B(1, 3) == Catch::Approx(0.52068f).margin(rtc::EPSILON));
+
+	REQUIRE(B(2, 0) == Catch::Approx(-0.07895f).margin(rtc::EPSILON));
+	REQUIRE(B(2, 1) == Catch::Approx(-0.22368f).margin(rtc::EPSILON));
+	REQUIRE(B(2, 2) == Catch::Approx(-0.05263f).margin(rtc::EPSILON));
+	REQUIRE(B(2, 3) == Catch::Approx(0.19737f).margin(rtc::EPSILON));
+
+	REQUIRE(B(3, 0) == Catch::Approx(-0.52256f).margin(rtc::EPSILON));
+	REQUIRE(B(3, 1) == Catch::Approx(-0.81391f).margin(rtc::EPSILON));
+	REQUIRE(B(3, 2) == Catch::Approx(-0.30075f).margin(rtc::EPSILON));
+	REQUIRE(B(3, 3) == Catch::Approx(0.30639f).margin(rtc::EPSILON));
+}
+
+TEST_CASE("Calculating the inverse of another matrix") {
+	Matrix A(4);
+	A(0, 0) = 8.0f;
+	A(0, 1) = -5.0f;
+	A(0, 2) = 9.0f;
+	A(0, 3) = 2.0f;
+
+	A(1, 0) = 7.0f;
+	A(1, 1) = 5.0f;
+	A(1, 2) = 6.0f;
+	A(1, 3) = 1.0f;
+
+	A(2, 0) = -6.0f;
+	A(2, 1) = 0.0f;
+	A(2, 2) = 9.0f;
+	A(2, 3) = 6.0f;
+
+	A(3, 0) = -3.0f;
+	A(3, 1) = 0.0f;
+	A(3, 2) = -9.0f;
+	A(3, 3) = -4.0f;
+
+	Matrix B = A.inverse();
+	REQUIRE(B(0, 0) == Catch::Approx(-0.15385f).margin(rtc::EPSILON));
+	REQUIRE(B(0, 1) == Catch::Approx(-0.15385f).margin(rtc::EPSILON));
+	REQUIRE(B(0, 2) == Catch::Approx(-0.28205f).margin(rtc::EPSILON));
+	REQUIRE(B(0, 3) == Catch::Approx(-0.53846f).margin(rtc::EPSILON));
+
+	REQUIRE(B(1, 0) == Catch::Approx(-0.07692f).margin(rtc::EPSILON));
+	REQUIRE(B(1, 1) == Catch::Approx(0.12308f).margin(rtc::EPSILON));
+	REQUIRE(B(1, 2) == Catch::Approx(0.02564f).margin(rtc::EPSILON));
+	REQUIRE(B(1, 3) == Catch::Approx(0.03077f).margin(rtc::EPSILON));
+
+	REQUIRE(B(2, 0) == Catch::Approx(0.35897f).margin(rtc::EPSILON));
+	REQUIRE(B(2, 1) == Catch::Approx(0.35897f).margin(rtc::EPSILON));
+	REQUIRE(B(2, 2) == Catch::Approx(0.43590f).margin(rtc::EPSILON));
+	REQUIRE(B(2, 3) == Catch::Approx(0.92308f).margin(rtc::EPSILON));
+
+	REQUIRE(B(3, 0) == Catch::Approx(-0.69231f).margin(rtc::EPSILON));
+	REQUIRE(B(3, 1) == Catch::Approx(-0.69231f).margin(rtc::EPSILON));
+	REQUIRE(B(3, 2) == Catch::Approx(-0.76923f).margin(rtc::EPSILON));
+	REQUIRE(B(3, 3) == Catch::Approx(-1.92308f).margin(rtc::EPSILON));
+}
+
+TEST_CASE("Calculating the inverse of a third matrix") {
+	Matrix A(4);
+	A(0, 0) = 9.0f;
+	A(0, 1) = 3.0f;
+	A(0, 2) = 0.0f;
+	A(0, 3) = 9.0f;
+
+	A(1, 0) = -5.0f;
+	A(1, 1) = -2.0f;
+	A(1, 2) = -6.0f;
+	A(1, 3) = -3.0f;
+
+	A(2, 0) = -4.0f;
+	A(2, 1) = 9.0f;
+	A(2, 2) = 6.0f;
+	A(2, 3) = 4.0f;
+
+	A(3, 0) = -7.0f;
+	A(3, 1) = 6.0f;
+	A(3, 2) = 6.0f;
+	A(3, 3) = 2.0f;
+
+	Matrix B = A.inverse();
+	REQUIRE(B(0, 0) == Catch::Approx(-0.04074f).margin(rtc::EPSILON));
+	REQUIRE(B(0, 1) == Catch::Approx(-0.07778f).margin(rtc::EPSILON));
+	REQUIRE(B(0, 2) == Catch::Approx(0.14444f).margin(rtc::EPSILON));
+	REQUIRE(B(0, 3) == Catch::Approx(-0.22222f).margin(rtc::EPSILON));
+
+	REQUIRE(B(1, 0) == Catch::Approx(-0.07778f).margin(rtc::EPSILON));
+	REQUIRE(B(1, 1) == Catch::Approx(0.03333f).margin(rtc::EPSILON));
+	REQUIRE(B(1, 2) == Catch::Approx(0.36667f).margin(rtc::EPSILON));
+	REQUIRE(B(1, 3) == Catch::Approx(-0.33333f).margin(rtc::EPSILON));
+
+	REQUIRE(B(2, 0) == Catch::Approx(-0.02901f).margin(rtc::EPSILON));
+	REQUIRE(B(2, 1) == Catch::Approx(-0.14630f).margin(rtc::EPSILON));
+	REQUIRE(B(2, 2) == Catch::Approx(-0.10926f).margin(rtc::EPSILON));
+	REQUIRE(B(2, 3) == Catch::Approx(0.12963f).margin(rtc::EPSILON));
+
+	REQUIRE(B(3, 0) == Catch::Approx(0.17778f).margin(rtc::EPSILON));
+	REQUIRE(B(3, 1) == Catch::Approx(0.06667f).margin(rtc::EPSILON));
+	REQUIRE(B(3, 2) == Catch::Approx(-0.26667f).margin(rtc::EPSILON));
+	REQUIRE(B(3, 3) == Catch::Approx(0.33333f).margin(rtc::EPSILON));
+}
 //
 //TEST_CASE("Multiplying a product by its inverse") {
 //	Matrix A(4);
