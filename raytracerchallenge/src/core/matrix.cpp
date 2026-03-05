@@ -74,7 +74,7 @@ Matrix Matrix::inverse() const
     assert(is_invertible());
     assert(row_size() == col_size());
 
-    Matrix out(size());
+    Matrix out(row_size());
     float cofact = 0.0f;
     float det = determinant();
     

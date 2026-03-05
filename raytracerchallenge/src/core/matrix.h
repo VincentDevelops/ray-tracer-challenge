@@ -4,6 +4,7 @@
 #include <cstddef>
 #include <vector>
 #include <cassert>
+#include "core/math_utils.h"
 
 struct Tuple;
 
@@ -129,7 +130,7 @@ public:
 			return false;
 
 		for (std::size_t i = 0; i < static_cast<std::size_t>(grid.size()); i++)
-			if (grid.at(i) != other.element_at(i))
+			if (!rtc::float_equals(grid.at(i), other.element_at(i)))
 				return false;
 
 		return true;

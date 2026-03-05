@@ -23,7 +23,8 @@ add_library(rtc
   "src/core/canvas.cpp" "src/core/canvas.h" 
   "src/practice/chapter2_ppm.h" 
   "src/core/matrix.h" "src/core/matrix.cpp" 
-  "src/core/constants.h")
+  "src/core/constants.h" 
+  "src/core/math_utils.h")
 
 add_executable(raytracerchallenge
   "src/raytracerchallenge.cpp" 
@@ -32,7 +33,8 @@ add_executable(raytracerchallenge
   "src/core/canvas.cpp" "src/core/canvas.h" 
   "src/practice/chapter2_ppm.h" 
   "src/core/matrix.h" "src/core/matrix.cpp" 
-  "src/core/constants.h")
+  "src/core/constants.h" 
+  "src/core/math_utils.h")
 
 target_link_libraries(raytracerchallenge PRIVATE rtc)
 
