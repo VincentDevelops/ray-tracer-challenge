@@ -1,3 +1,4 @@
+#include "matrix.h"
 #include "core/matrix.h"
 #include "core/tuple.h"
 
@@ -67,6 +68,28 @@ Matrix Matrix::submatrix(std::size_t d_row, std::size_t d_col) const {
 
     return out;
 }
+
+Matrix Matrix::inverse() const
+{
+    assert(is_invertible());
+    assert(row_size() == col_size());
+
+    Matrix out(size());
+    float cofact = 0.0f;
+    float det = determinant();
+    
+
+    for (std::size_t row_ = 0; row_ < row_size(); row_++) {
+        for (std::size_t col_ = 0; col_ < col_size(); col_++) {
+            cofact = cofactor(row_, col_);
+            out(col_, row_) = cofact / det;
+        }
+    }
+
+    return out;
+}
+
+
 
 // ================================================
 // STATIC FUNCTIONS ===============================
