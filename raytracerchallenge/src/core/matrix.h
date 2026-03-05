@@ -14,7 +14,8 @@ private:
 	std::size_t columns = 0;
 	std::vector<float> grid;
 
-	[[nodiscard]] float determinant_2x2(const Matrix& matrix);
+	[[nodiscard]] float determinant_2x2() const;
+	[[nodiscard]] float determinant_3x3() const;
 
 public:
 
@@ -60,7 +61,16 @@ public:
 
 	// retruns the determinant of a matrix
 	// currently only supports a 2x2 matrix
-	[[nodiscard]] float determinant();
+	// | a b |  determinant = ad - bc
+	// | c d |
+	[[nodiscard]] float determinant() const;
+
+	[[nodiscard]] float minor(std::size_t row_, std::size_t col_) const;
+
+	[[nodiscard]] float cofactor(std::size_t row_, std::size_t col_) const {
+		float m = minor(row_, col_);
+		return ((row_ + col_) % 2 == 0) ? m : -m;
+	}
 
 	// fills matrix with 1's diagonally from top left to bottom right
 	//  all other elements are left with 0.0f
@@ -71,10 +81,13 @@ public:
 		for (std::size_t diagonal = 0; diagonal < row_size(); diagonal++)
 			out(diagonal, diagonal) = 1.0f;
 
-		return out;
+		return out; 
 	}
 
-	
+	// returns a new matrix with deleted row and deleted column specified 
+	// in calling argument.
+	// will always produce a new matrix of size (row - 1) * (col - 1)
+	[[nodiscard]] Matrix submatrix(std::size_t d_row, std::size_t d_col) const;
 
 
 	// ================================================

@@ -373,123 +373,123 @@ TEST_CASE("Calculating the determinant of a 2x2 matrix") {
 
 	REQUIRE(A.determinant() == 17.0f);
 }
-//
-//TEST_CASE("A submatrix of 3x3 matrix is a 2x2 matrix") {
-//	Matrix A(3);
-//	A(0, 0) = 1.0f;
-//	A(0, 1) = 5.0f;
-//	A(0, 2) = 0.0f;
-//
-//	A(1, 0) = -3.0f;
-//	A(1, 1) = 2.0f;
-//	A(1, 2) = 7.0f;
-//	
-//	A(2, 0) = 0.0f;
-//	A(2, 1) = 6.0f;
-//	A(2, 2) = -3.0f;
-//
-//	Matrix B = Matrix::submatrix(A, 0, 2);
-//	REQUIRE(B(0, 0) == -3.0f);
-//	REQUIRE(B(0, 1) == 2.0f);
-//	REQUIRE(B(1, 0) == 0.0f);
-//	REQUIRE(B(1, 1) == 6.0f);
-//}
-//
-//TEST_CASE("A submatrix of a 4x4 matrix is a 3x3 matrix") {
-//	Matrix A(4);
-//	A(0, 0) = -6.0f;
-//	A(0, 1) = 1.0f;
-//	A(0, 2) = 1.0f;
-//	A(0, 3) = 6.0f;
-//
-//	A(1, 0) = -8.0f;
-//	A(1, 1) = 5.0f;
-//	A(1, 2) = 8.0f;
-//	A(1, 3) = 6.0f;
-//
-//	A(2, 0) = -1.0f;
-//	A(2, 1) = 0.0f;
-//	A(2, 2) = 8.0f;
-//	A(2, 3) = 2.0f;
-//
-//	A(3, 0) = -7.0f;
-//	A(3, 1) = 1.0f;
-//	A(3, 2) = -1.0f;
-//	A(3, 3) = 1.0f;
-//
-//	Matrix B = Matrix::submatrix(A, 2, 1);
-//	REQUIRE(B(0, 0) == -6.0f);
-//	REQUIRE(B(0, 1) == 1.0f);
-//	REQUIRE(B(0, 2) == 6.0f);
-//
-//	REQUIRE(B(1, 0) == -8.0);
-//	REQUIRE(B(1, 1) == 8.0f);
-//	REQUIRE(B(1, 2) == 6.0f);
-//
-//	REQUIRE(B(2, 0) == -7.0f);
-//	REQUIRE(B(2, 1) == -1.0f);
-//	REQUIRE(B(2, 2) == 1.0f);
-//}
-//
-//TEST_CASE("Calculating a minor of a 3x3 matrix") {
-//	Matrix A(3);
-//	A(0, 0) = 3.0f;
-//	A(0, 1) = 5.0f;
-//	A(0, 2) = 0.0f;
-//
-//	A(1, 0) = 2.0f;
-//	A(1, 1) = -1.0f;
-//	A(1, 2) = -7.0f;
-//
-//	A(2, 0) = 6.0f;
-//	A(2, 1) = -1.0f;
-//	A(2, 2) = 5.0f;
-//
-//	Matrix B = Matrix::submatrix(A, 1, 0);
-//
-//	REQUIRE(Matrix::determinant(B) == 25);
-//	REQUIRE(Matrix::minor(A, 1, 0) == 25);
-//}
-//
-//TEST_CASE("Calculating a cofacctor of a 3x3 matrix") {
-//	Matrix A(3);
-//	A(0, 0) = 3.0f;
-//	A(0, 1) = 5.0f;
-//	A(0, 2) = 0.0f;
-//
-//	A(1, 0) = 2.0f;
-//	A(1, 1) = -1.0f;
-//	A(1, 2) = -7.0f;
-//
-//	A(2, 0) = 6.0f;
-//	A(2, 1) = -1.0f;
-//	A(2, 2) = 5.0f;
-//
-//	REQUIRE(Matrix::minor(A, 0, 0)		== -12.0f);
-//	REQUIRE(Matrix::cofactor(A, 0, 0)	== -12.0f);
-//	REQUIRE(Matrix::minor(A, 1, 0)		== 25.0f);
-//	REQUIRE(Matrix::cofactor(A, 1, 0)	== -25.0f);
-//}
-//
-//TEST_CASE("Calculating a determinant of a 3x3 matrix") {
-//	Matrix A(3);
-//	A(0, 0) = 1.0f;
-//	A(0, 1) = 2.0f;
-//	A(0, 2) = 6.0f;
-//
-//	A(1, 0) = -5.0f;
-//	A(1, 1) = 8.0f;
-//	A(1, 2) = -4.0f;
-//
-//	A(2, 0) = 2.0f;
-//	A(2, 1) = 6.0f;
-//	A(2, 2) = 4.0f;
-//
-//	REQUIRE(Matrix::cofactor(A, 0, 0) == 56.0f);
-//	REQUIRE(Matrix::cofactor(A, 0, 1) == 12.0f);
-//	REQUIRE(Matrix::cofactor(A, 0, 2) == -46.0f);
-//	REQUIRE(Matrix::determinant(A) == -196.0f);
-//}
+
+TEST_CASE("A submatrix of 3x3 matrix is a 2x2 matrix") {
+	Matrix A(3);
+	A(0, 0) = 1.0f;
+	A(0, 1) = 5.0f;
+	A(0, 2) = 0.0f;
+
+	A(1, 0) = -3.0f;
+	A(1, 1) = 2.0f;
+	A(1, 2) = 7.0f;
+	
+	A(2, 0) = 0.0f;
+	A(2, 1) = 6.0f;
+	A(2, 2) = -3.0f;
+
+	Matrix B = A.submatrix(0, 2);
+	REQUIRE(B(0, 0) == -3.0f);
+	REQUIRE(B(0, 1) == 2.0f);
+	REQUIRE(B(1, 0) == 0.0f);
+	REQUIRE(B(1, 1) == 6.0f);
+}
+
+TEST_CASE("A submatrix of a 4x4 matrix is a 3x3 matrix") {
+	Matrix A(4);
+	A(0, 0) = -6.0f;
+	A(0, 1) = 1.0f;
+	A(0, 2) = 1.0f;
+	A(0, 3) = 6.0f;
+
+	A(1, 0) = -8.0f;
+	A(1, 1) = 5.0f;
+	A(1, 2) = 8.0f;
+	A(1, 3) = 6.0f;
+
+	A(2, 0) = -1.0f;
+	A(2, 1) = 0.0f;
+	A(2, 2) = 8.0f;
+	A(2, 3) = 2.0f;
+
+	A(3, 0) = -7.0f;
+	A(3, 1) = 1.0f;
+	A(3, 2) = -1.0f;
+	A(3, 3) = 1.0f;
+
+	Matrix B = A.submatrix(2, 1);
+	REQUIRE(B(0, 0) == -6.0f);
+	REQUIRE(B(0, 1) == 1.0f);
+	REQUIRE(B(0, 2) == 6.0f);
+
+	REQUIRE(B(1, 0) == -8.0);
+	REQUIRE(B(1, 1) == 8.0f);
+	REQUIRE(B(1, 2) == 6.0f);
+
+	REQUIRE(B(2, 0) == -7.0f);
+	REQUIRE(B(2, 1) == -1.0f);
+	REQUIRE(B(2, 2) == 1.0f);
+}
+
+TEST_CASE("Calculating a minor of a 3x3 matrix") {
+	Matrix A(3);
+	A(0, 0) = 3.0f;
+	A(0, 1) = 5.0f;
+	A(0, 2) = 0.0f;
+
+	A(1, 0) = 2.0f;
+	A(1, 1) = -1.0f;
+	A(1, 2) = -7.0f;
+
+	A(2, 0) = 6.0f;
+	A(2, 1) = -1.0f;
+	A(2, 2) = 5.0f;
+
+	Matrix B = A.submatrix(1, 0);
+
+	REQUIRE(B.determinant() == 25);
+	REQUIRE(A.minor(1, 0) == 25);
+}
+
+TEST_CASE("Calculating a cofacctor of a 3x3 matrix") {
+	Matrix A(3);
+	A(0, 0) = 3.0f;
+	A(0, 1) = 5.0f;
+	A(0, 2) = 0.0f;
+
+	A(1, 0) = 2.0f;
+	A(1, 1) = -1.0f;
+	A(1, 2) = -7.0f;
+
+	A(2, 0) = 6.0f;
+	A(2, 1) = -1.0f;
+	A(2, 2) = 5.0f;
+
+	REQUIRE(A.minor(0, 0)		== -12.0f);
+	REQUIRE(A.cofactor(0, 0)	== -12.0f);
+	REQUIRE(A.minor(1, 0)		== 25.0f);
+	REQUIRE(A.cofactor(1, 0)	== -25.0f);
+}
+
+TEST_CASE("Calculating a determinant of a 3x3 matrix") {
+	Matrix A(3);
+	A(0, 0) = 1.0f;
+	A(0, 1) = 2.0f;
+	A(0, 2) = 6.0f;
+
+	A(1, 0) = -5.0f;
+	A(1, 1) = 8.0f;
+	A(1, 2) = -4.0f;
+
+	A(2, 0) = 2.0f;
+	A(2, 1) = 6.0f;
+	A(2, 2) = 4.0f;
+
+	REQUIRE(A.cofactor(0, 0) == 56.0f);
+	REQUIRE(A.cofactor(0, 1) == 12.0f);
+	REQUIRE(A.cofactor(0, 2) == -46.0f);
+	REQUIRE(A.determinant() == -196.0f);
+}
 //
 //TEST_CASE("Calculating the determinant of a 4x4 matrix") {
 //	Matrix A(4);

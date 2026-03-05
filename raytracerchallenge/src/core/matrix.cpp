@@ -1,10 +1,94 @@
 #include "core/matrix.h"
 #include "core/tuple.h"
 
-float Matrix::determinant_2x2(const Matrix& matrix) {
-    return (matrix(0, 0) * matrix(1, 1)) - (matrix(0, 1) * matrix(1, 0));
+// ================================================
+// PRIVATE FUNCTIONS ==============================
+// ================================================
+
+
+float Matrix::determinant_2x2() const {
+    return (*this)(0, 0) * (*this)(1, 1) - (*this)(0, 1) * (*this)(1, 0);
 }
 
+float Matrix::determinant_3x3() const
+{
+    return (*this)(0, 0) * cofactor(0, 0)
+        + (*this)(0, 1) * cofactor(0, 1)
+        + (*this)(0, 2) * cofactor(0, 2);
+
+}
+
+// ================================================
+// GENERAL FUNCTIONS ==============================
+// ================================================
+
+
+//float Matrix::determinant() const {
+//    assert(row_size() == col_size());
+//
+//    switch (row_size()) {
+//    case 2:
+//        return determinant_2x2();
+//    case 3:
+//        return determinant_3x3();
+//    default:
+//        assert(false && "determinant() only implemented for 2x2 and 3x3");
+//        return 0.0f; // to satisfy compiler in release
+//    }
+//}
+
+float Matrix::determinant() const {
+    assert(row_size() == col_size());
+
+    // Base case
+    if (row_size() == 2) {
+        return (*this)(0, 0) * (*this)(1, 1) - (*this)(0, 1) * (*this)(1, 0);
+    }
+
+    float sum = 0.0f;
+
+    // Expand along first row (row 0)
+    for (std::size_t col = 0; col < col_size(); ++col) {
+        sum += (*this)(0, col) * cofactor(0, col);
+    }
+
+    return sum;
+}
+
+float Matrix::minor(std::size_t row_, std::size_t col_) const {
+    // currently no assert to check size of matrix, assuming start of 3x3 until resolved.
+    assert(row_size() == 3 && col_size() == 3);
+
+    return submatrix(row_, col_).determinant();
+}
+
+Matrix Matrix::submatrix(std::size_t d_row, std::size_t d_col) const {
+    assert(d_row < row_size() && d_col < col_size());
+
+    Matrix out((row_size() - 1), (col_size() - 1));
+    std::size_t row = 0;
+    std::size_t col = 0;
+
+    for (std::size_t i = 0; i < row_size(); i++) {
+        if (i == d_row) {
+            continue;
+        }
+
+        for (std::size_t j = 0; j < col_size(); j++) {
+            if (j == d_col) {
+                continue;
+            }
+            
+            out(row, col) = element_at(i, j);
+
+            col++;
+        }
+        col = 0;
+        row++;
+    }
+
+    return out;
+}
 
 // ================================================
 // STATIC FUNCTIONS ===============================
@@ -39,15 +123,6 @@ Matrix Matrix::transpose(const Matrix matrix) {
     }
 
     return out;
-}
-
-float Matrix::determinant() {
-    assert(row_size() == col_size());
-
-    switch (row_size()) {
-    case 2:
-        return determinant_2x2(*this);
-    }
 }
 
 
