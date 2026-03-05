@@ -10,7 +10,9 @@
           "cacheVariables": {
             "CMAKE_C_COMPILER": "cl.exe",
             "CMAKE_CXX_COMPILER": "cl.exe",
-            "CMAKE_TOOLCHAIN_FILE": "$env{MY_VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+            "CMAKE_TOOLCHAIN_FILE": "$env{MY_VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+            "VCPKG_ROOT": "$env{MY_VCPKG_ROOT}",
+            "VCPKG_EXECUTABLE": "$env{MY_VCPKG_ROOT}/vcpkg.exe"
           },
             "condition": {
                 "type": "equals",
