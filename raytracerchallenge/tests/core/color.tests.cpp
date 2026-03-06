@@ -1,12 +1,11 @@
 #include <catch2/catch_test_macros.hpp>
-#include <catch2/catch_approx.hpp>
 #include "core/color.h"
 
 TEST_CASE("Color(r_, g_, b_) constructor check") {
 	Color c(-0.5f, 0.4f, 1.7f);
-	REQUIRE(c.r == -0.5f);
-	REQUIRE(c.g == 0.4f);
-	REQUIRE(c.b == 1.7f);
+	REQUIRE(rtc::float_equals(c.r, -0.5f));
+	REQUIRE(rtc::float_equals(c.g, 0.4f));
+	REQUIRE(rtc::float_equals(c.b, 1.7f));
 }
 
 TEST_CASE("Adding Colors") {

@@ -1,5 +1,4 @@
 #include <catch2/catch_test_macros.hpp>
-#include <catch2/catch_approx.hpp>
 #include "core/matrix.h"
 #include "core/tuple.h"
 #include "core/constants.h"
@@ -26,13 +25,13 @@ TEST_CASE("Constructing and inspecting a 4x4 matrix") {
 	m(3, 2) = 15.5f;
 	m(3, 3) = 16.5f;
 
-	REQUIRE(m(0, 0) == 1.0f);
-	REQUIRE(m(0, 3) == 4.0f);
-	REQUIRE(m(1, 0) == 5.5f);
-	REQUIRE(m(1, 2) == 7.5f);
-	REQUIRE(m(2, 2) == 11.0f);
-	REQUIRE(m(3, 0) == 13.5f);
-	REQUIRE(m(3, 2) == 15.5f);
+	REQUIRE(rtc::float_equals(m(0, 0), 1.0f));
+	REQUIRE(rtc::float_equals(m(0, 3), 4.0f));
+	REQUIRE(rtc::float_equals(m(1, 0), 5.5f));
+	REQUIRE(rtc::float_equals(m(1, 2), 7.5f));
+	REQUIRE(rtc::float_equals(m(2, 2), 11.0f));
+	REQUIRE(rtc::float_equals(m(3, 0), 13.5f));
+	REQUIRE(rtc::float_equals(m(3, 2), 15.5f));
 
 }
 
@@ -43,10 +42,10 @@ TEST_CASE("A 2x2 Matrix ought to be representable") {
 	m(1, 0) = 1.0f;
 	m(1, 1) = -2.0f;
 
-	REQUIRE(m(0, 0) == -3.0f);
-	REQUIRE(m(0, 1) == 5.0f);
-	REQUIRE(m(1, 0) == 1.0f);
-	REQUIRE(m(1, 1) == -2.0f);
+	REQUIRE(rtc::float_equals(m(0, 0), -3.0f));
+	REQUIRE(rtc::float_equals(m(0, 1), 5.0f));
+	REQUIRE(rtc::float_equals(m(1, 0), 1.0f));
+	REQUIRE(rtc::float_equals(m(1, 1), -2.0f));
 }
 
 TEST_CASE("A 3x3 Matrix ought to be representable") {
@@ -61,9 +60,9 @@ TEST_CASE("A 3x3 Matrix ought to be representable") {
 	m(2, 1) = 1.0f;
 	m(2, 2) = 1.0f;
 
-	REQUIRE(m(0, 0) == -3.0f);
-	REQUIRE(m(1, 1) == -2.0f);
-	REQUIRE(m(2, 2) == 1.0f);
+	REQUIRE(rtc::float_equals(m(0, 0), -3.0f));
+	REQUIRE(rtc::float_equals(m(1, 1), -2.0f));
+	REQUIRE(rtc::float_equals(m(2, 2), 1.0f));
 }
 
 TEST_CASE("Matrix Equality with identical matrices") {
@@ -193,25 +192,25 @@ TEST_CASE("Multiplying two matrices") {
 	B(3, 3) = 8.0f;
 
 	Matrix C = A * B;
-	REQUIRE(C(0, 0) == 20.0f);
-	REQUIRE(C(0, 1) == 22.0f);
-	REQUIRE(C(0, 2) == 50.0f);
-	REQUIRE(C(0, 3) == 48.0f);
-	
-	REQUIRE(C(1, 0) == 44.0f);
-	REQUIRE(C(1, 1) == 54.0f);
-	REQUIRE(C(1, 2) == 114.0f);
-	REQUIRE(C(1, 3) == 108.0f);
+	REQUIRE(rtc::float_equals(C(0, 0), 20.0f));
+	REQUIRE(rtc::float_equals(C(0, 1), 22.0f));
+	REQUIRE(rtc::float_equals(C(0, 2), 50.0f));
+	REQUIRE(rtc::float_equals(C(0, 3), 48.0f));
 
-	REQUIRE(C(2, 0) == 40.0f);
-	REQUIRE(C(2, 1) == 58.0f);
-	REQUIRE(C(2, 2) == 110.0f);
-	REQUIRE(C(2, 3) == 102.0f);
+	REQUIRE(rtc::float_equals(C(1, 0), 44.0f));
+	REQUIRE(rtc::float_equals(C(1, 1), 54.0f));
+	REQUIRE(rtc::float_equals(C(1, 2), 114.0f));
+	REQUIRE(rtc::float_equals(C(1, 3), 108.0f));
 
-	REQUIRE(C(3, 0) == 16.0f);
-	REQUIRE(C(3, 1) == 26.0f);
-	REQUIRE(C(3, 2) == 46.0f);
-	REQUIRE(C(3, 3) == 42.0f);
+	REQUIRE(rtc::float_equals(C(2, 0), 40.0f));
+	REQUIRE(rtc::float_equals(C(2, 1), 58.0f));
+	REQUIRE(rtc::float_equals(C(2, 2), 110.0f));
+	REQUIRE(rtc::float_equals(C(2, 3), 102.0f));
+
+	REQUIRE(rtc::float_equals(C(3, 0), 16.0f));
+	REQUIRE(rtc::float_equals(C(3, 1), 26.0f));
+	REQUIRE(rtc::float_equals(C(3, 2), 46.0f));
+	REQUIRE(rtc::float_equals(C(3, 3), 42.0f));
 
 }
 
@@ -318,25 +317,25 @@ TEST_CASE("Transposing a matrix") {
 	A(3, 3) = 8.0f;
 
 	Matrix C = Matrix::transpose(A);
-	REQUIRE(C(0, 0) == 0.0f);
-	REQUIRE(C(0, 1) == 9.0f);
-	REQUIRE(C(0, 2) == 1.0f);
-	REQUIRE(C(0, 3) == 0.0f);
+	REQUIRE(rtc::float_equals(C(0, 0), 0.0f));
+	REQUIRE(rtc::float_equals(C(0, 1), 9.0f));
+	REQUIRE(rtc::float_equals(C(0, 2), 1.0f));
+	REQUIRE(rtc::float_equals(C(0, 3), 0.0f));
 
-	REQUIRE(C(1, 0) == 9.0f);
-	REQUIRE(C(1, 1) == 8.0f);
-	REQUIRE(C(1, 2) == 8.0f);
-	REQUIRE(C(1, 3) == 0.0f);
+	REQUIRE(rtc::float_equals(C(1, 0), 9.0f));
+	REQUIRE(rtc::float_equals(C(1, 1), 8.0f));
+	REQUIRE(rtc::float_equals(C(1, 2), 8.0f));
+	REQUIRE(rtc::float_equals(C(1, 3), 0.0f));
 
-	REQUIRE(C(2, 0) == 3.0f);
-	REQUIRE(C(2, 1) == 0.0f);
-	REQUIRE(C(2, 2) == 5.0f);
-	REQUIRE(C(2, 3) == 5.0f);
+	REQUIRE(rtc::float_equals(C(2, 0), 3.0f));
+	REQUIRE(rtc::float_equals(C(2, 1), 0.0f));
+	REQUIRE(rtc::float_equals(C(2, 2), 5.0f));
+	REQUIRE(rtc::float_equals(C(2, 3), 5.0f));
 
-	REQUIRE(C(3, 0) == 0.0f);
-	REQUIRE(C(3, 1) == 8.0f);
-	REQUIRE(C(3, 2) == 3.0f);
-	REQUIRE(C(3, 3) == 8.0f);
+	REQUIRE(rtc::float_equals(C(3, 0), 0.0f));
+	REQUIRE(rtc::float_equals(C(3, 1), 8.0f));
+	REQUIRE(rtc::float_equals(C(3, 2), 3.0f));
+	REQUIRE(rtc::float_equals(C(3, 3), 8.0f));
 }
 
 TEST_CASE("Transposing the identity matrix") {
@@ -372,7 +371,7 @@ TEST_CASE("Calculating the determinant of a 2x2 matrix") {
 	A(1, 0) = -3.0f;
 	A(1, 1) = 2.0f;
 
-	REQUIRE(A.determinant() == 17.0f);
+	REQUIRE(rtc::float_equals(A.determinant(), 17.0f));
 }
 
 TEST_CASE("A submatrix of 3x3 matrix is a 2x2 matrix") {
@@ -390,10 +389,10 @@ TEST_CASE("A submatrix of 3x3 matrix is a 2x2 matrix") {
 	A(2, 2) = -3.0f;
 
 	Matrix B = A.submatrix(0, 2);
-	REQUIRE(B(0, 0) == -3.0f);
-	REQUIRE(B(0, 1) == 2.0f);
-	REQUIRE(B(1, 0) == 0.0f);
-	REQUIRE(B(1, 1) == 6.0f);
+	REQUIRE(rtc::float_equals(B(0, 0), -3.0f));
+	REQUIRE(rtc::float_equals(B(0, 1), 2.0f));
+	REQUIRE(rtc::float_equals(B(1, 0), 0.0f));
+	REQUIRE(rtc::float_equals(B(1, 1), 6.0f));
 }
 
 TEST_CASE("A submatrix of a 4x4 matrix is a 3x3 matrix") {
@@ -419,17 +418,17 @@ TEST_CASE("A submatrix of a 4x4 matrix is a 3x3 matrix") {
 	A(3, 3) = 1.0f;
 
 	Matrix B = A.submatrix(2, 1);
-	REQUIRE(B(0, 0) == -6.0f);
-	REQUIRE(B(0, 1) == 1.0f);
-	REQUIRE(B(0, 2) == 6.0f);
+	REQUIRE(rtc::float_equals(B(0, 0), -6.0f));
+	REQUIRE(rtc::float_equals(B(0, 1), 1.0f));
+	REQUIRE(rtc::float_equals(B(0, 2), 6.0f));
 
-	REQUIRE(B(1, 0) == -8.0);
-	REQUIRE(B(1, 1) == 8.0f);
-	REQUIRE(B(1, 2) == 6.0f);
+	REQUIRE(rtc::float_equals(B(1, 0), -8.0f));
+	REQUIRE(rtc::float_equals(B(1, 1), 8.0f));
+	REQUIRE(rtc::float_equals(B(1, 2), 6.0f));
 
-	REQUIRE(B(2, 0) == -7.0f);
-	REQUIRE(B(2, 1) == -1.0f);
-	REQUIRE(B(2, 2) == 1.0f);
+	REQUIRE(rtc::float_equals(B(2, 0), -7.0f));
+	REQUIRE(rtc::float_equals(B(2, 1), -1.0f));
+	REQUIRE(rtc::float_equals(B(2, 2), 1.0f));
 }
 
 TEST_CASE("Calculating a minor of a 3x3 matrix") {
@@ -448,8 +447,8 @@ TEST_CASE("Calculating a minor of a 3x3 matrix") {
 
 	Matrix B = A.submatrix(1, 0);
 
-	REQUIRE(B.determinant() == 25);
-	REQUIRE(A.minor(1, 0) == 25);
+	REQUIRE(rtc::float_equals(B.determinant(), 25.0f));
+	REQUIRE(rtc::float_equals(A.minor(1, 0), 25.0f));
 }
 
 TEST_CASE("Calculating a cofacctor of a 3x3 matrix") {
@@ -466,10 +465,10 @@ TEST_CASE("Calculating a cofacctor of a 3x3 matrix") {
 	A(2, 1) = -1.0f;
 	A(2, 2) = 5.0f;
 
-	REQUIRE(A.minor(0, 0)		== -12.0f);
-	REQUIRE(A.cofactor(0, 0)	== -12.0f);
-	REQUIRE(A.minor(1, 0)		== 25.0f);
-	REQUIRE(A.cofactor(1, 0)	== -25.0f);
+	REQUIRE(rtc::float_equals(A.minor(0, 0), -12.0f));
+	REQUIRE(rtc::float_equals(A.cofactor(0, 0), -12.0f));
+	REQUIRE(rtc::float_equals(A.minor(1, 0), 25.0f));
+	REQUIRE(rtc::float_equals(A.cofactor(1, 0), -25.0f));
 }
 
 TEST_CASE("Calculating a determinant of a 3x3 matrix") {
@@ -486,10 +485,10 @@ TEST_CASE("Calculating a determinant of a 3x3 matrix") {
 	A(2, 1) = 6.0f;
 	A(2, 2) = 4.0f;
 
-	REQUIRE(A.cofactor(0, 0) == 56.0f);
-	REQUIRE(A.cofactor(0, 1) == 12.0f);
-	REQUIRE(A.cofactor(0, 2) == -46.0f);
-	REQUIRE(A.determinant() == -196.0f);
+	REQUIRE(rtc::float_equals(A.cofactor(0, 0), 56.0f));
+	REQUIRE(rtc::float_equals(A.cofactor(0, 1), 12.0f));
+	REQUIRE(rtc::float_equals(A.cofactor(0, 2), -46.0f));
+	REQUIRE(rtc::float_equals(A.determinant(), -196.0f));
 }
 
 TEST_CASE("Calculating the determinant of a 4x4 matrix") {
@@ -514,11 +513,11 @@ TEST_CASE("Calculating the determinant of a 4x4 matrix") {
 	A(3, 2) = 7.0f;
 	A(3, 3) = -9.0f;
 
-	REQUIRE(A.cofactor(0, 0) == 690.0f);
-	REQUIRE(A.cofactor(0, 1) == 447.0f);
-	REQUIRE(A.cofactor(0, 2) == 210.0f);
-	REQUIRE(A.cofactor(0, 3) == 51.0f);
-	REQUIRE(A.determinant() == -4071.0f);
+	REQUIRE(rtc::float_equals(A.cofactor(0, 0), 690.0f));
+	REQUIRE(rtc::float_equals(A.cofactor(0, 1), 447.0f));
+	REQUIRE(rtc::float_equals(A.cofactor(0, 2), 210.0f));
+	REQUIRE(rtc::float_equals(A.cofactor(0, 3), 51.0f));
+	REQUIRE(rtc::float_equals(A.determinant(), -4071.0f));
 }
 
 TEST_CASE("Testing an invertible matrix for invertibility") {
@@ -543,7 +542,7 @@ TEST_CASE("Testing an invertible matrix for invertibility") {
 	A(3, 2) = 7.0f;
 	A(3, 3) = -6.0f;
 
-	REQUIRE(A.determinant() == -2120.0f);
+	REQUIRE(rtc::float_equals(A.determinant(), -2120.0f));	
 	REQUIRE(A.is_invertible() == true);
 }
 
@@ -569,7 +568,7 @@ TEST_CASE("Testing a noninvertible matrix for invertibility") {
 	A(3, 2) = 0.0f;
 	A(3, 3) = 0.0f;
 
-	REQUIRE(A.determinant() == 0);
+	REQUIRE(rtc::float_equals(A.determinant(), 0.0f));	
 	REQUIRE(A.is_invertible() == false);
 }
 
@@ -597,31 +596,31 @@ TEST_CASE("Calculating the inverse of a matrix") {
 
 	Matrix B = A.inverse();
 
-	REQUIRE(A.determinant() == 532);
-	REQUIRE(A.cofactor(2, 3) == -160);
-	REQUIRE(B(3, 2) == Catch::Approx(-160.0f / 532.0f).margin(rtc::EPSILON));
-	REQUIRE(A.cofactor(3, 2) == 105);
-	REQUIRE(B(2, 3) == Catch::Approx(105.0f / 532.0f).margin(rtc::EPSILON));
+	REQUIRE(rtc::float_equals(A.determinant(), 532.0f));
+	REQUIRE(rtc::float_equals(A.cofactor(2, 3), -160.0f));
+	REQUIRE(rtc::float_equals(B(3, 2), -160.0f / 532.0f));
+	REQUIRE(rtc::float_equals(A.cofactor(3, 2), 105.0f));
+	REQUIRE(rtc::float_equals(B(2, 3), 105.0f / 532.0f));
 
-	REQUIRE(B(0, 0) == Catch::Approx(0.21805f).margin(rtc::EPSILON));
-	REQUIRE(B(0, 1) == Catch::Approx(0.45113f).margin(rtc::EPSILON));
-	REQUIRE(B(0, 2) == Catch::Approx(0.24060f).margin(rtc::EPSILON));
-	REQUIRE(B(0, 3) == Catch::Approx(-0.04511f).margin(rtc::EPSILON));
+	REQUIRE(rtc::float_equals(B(0, 0), 0.21805f));
+	REQUIRE(rtc::float_equals(B(0, 1), 0.45113f));
+	REQUIRE(rtc::float_equals(B(0, 2), 0.24060f));
+	REQUIRE(rtc::float_equals(B(0, 3), -0.04511f));
 
-	REQUIRE(B(1, 0) == Catch::Approx(-0.80827f).margin(rtc::EPSILON));
-	REQUIRE(B(1, 1) == Catch::Approx(-1.45677f).margin(rtc::EPSILON));
-	REQUIRE(B(1, 2) == Catch::Approx(-0.44361f).margin(rtc::EPSILON));
-	REQUIRE(B(1, 3) == Catch::Approx(0.52068f).margin(rtc::EPSILON));
+	REQUIRE(rtc::float_equals(B(1, 0), -0.80827f));
+	REQUIRE(rtc::float_equals(B(1, 1), -1.45677f));
+	REQUIRE(rtc::float_equals(B(1, 2), -0.44361f));
+	REQUIRE(rtc::float_equals(B(1, 3), 0.52068f));
 
-	REQUIRE(B(2, 0) == Catch::Approx(-0.07895f).margin(rtc::EPSILON));
-	REQUIRE(B(2, 1) == Catch::Approx(-0.22368f).margin(rtc::EPSILON));
-	REQUIRE(B(2, 2) == Catch::Approx(-0.05263f).margin(rtc::EPSILON));
-	REQUIRE(B(2, 3) == Catch::Approx(0.19737f).margin(rtc::EPSILON));
+	REQUIRE(rtc::float_equals(B(2, 0), -0.07895f));
+	REQUIRE(rtc::float_equals(B(2, 1), -0.22368f));
+	REQUIRE(rtc::float_equals(B(2, 2), -0.05263f));
+	REQUIRE(rtc::float_equals(B(2, 3), 0.19737f));
 
-	REQUIRE(B(3, 0) == Catch::Approx(-0.52256f).margin(rtc::EPSILON));
-	REQUIRE(B(3, 1) == Catch::Approx(-0.81391f).margin(rtc::EPSILON));
-	REQUIRE(B(3, 2) == Catch::Approx(-0.30075f).margin(rtc::EPSILON));
-	REQUIRE(B(3, 3) == Catch::Approx(0.30639f).margin(rtc::EPSILON));
+	REQUIRE(rtc::float_equals(B(3, 0), -0.52256f));
+	REQUIRE(rtc::float_equals(B(3, 1), -0.81391f));
+	REQUIRE(rtc::float_equals(B(3, 2), -0.30075f));
+	REQUIRE(rtc::float_equals(B(3, 3), 0.30639f));
 }
 
 TEST_CASE("Calculating the inverse of another matrix") {
@@ -647,25 +646,25 @@ TEST_CASE("Calculating the inverse of another matrix") {
 	A(3, 3) = -4.0f;
 
 	Matrix B = A.inverse();
-	REQUIRE(B(0, 0) == Catch::Approx(-0.15385f).margin(rtc::EPSILON));
-	REQUIRE(B(0, 1) == Catch::Approx(-0.15385f).margin(rtc::EPSILON));
-	REQUIRE(B(0, 2) == Catch::Approx(-0.28205f).margin(rtc::EPSILON));
-	REQUIRE(B(0, 3) == Catch::Approx(-0.53846f).margin(rtc::EPSILON));
+	REQUIRE(rtc::float_equals(B(0, 0), -0.15385f));
+	REQUIRE(rtc::float_equals(B(0, 1), -0.15385f));
+	REQUIRE(rtc::float_equals(B(0, 2), -0.28205f));
+	REQUIRE(rtc::float_equals(B(0, 3), -0.53846f));
 
-	REQUIRE(B(1, 0) == Catch::Approx(-0.07692f).margin(rtc::EPSILON));
-	REQUIRE(B(1, 1) == Catch::Approx(0.12308f).margin(rtc::EPSILON));
-	REQUIRE(B(1, 2) == Catch::Approx(0.02564f).margin(rtc::EPSILON));
-	REQUIRE(B(1, 3) == Catch::Approx(0.03077f).margin(rtc::EPSILON));
+	REQUIRE(rtc::float_equals(B(1, 0), -0.07692f));
+	REQUIRE(rtc::float_equals(B(1, 1), 0.12308f));
+	REQUIRE(rtc::float_equals(B(1, 2), 0.02564f));
+	REQUIRE(rtc::float_equals(B(1, 3), 0.03077f));
 
-	REQUIRE(B(2, 0) == Catch::Approx(0.35897f).margin(rtc::EPSILON));
-	REQUIRE(B(2, 1) == Catch::Approx(0.35897f).margin(rtc::EPSILON));
-	REQUIRE(B(2, 2) == Catch::Approx(0.43590f).margin(rtc::EPSILON));
-	REQUIRE(B(2, 3) == Catch::Approx(0.92308f).margin(rtc::EPSILON));
+	REQUIRE(rtc::float_equals(B(2, 0), 0.35897f));
+	REQUIRE(rtc::float_equals(B(2, 1), 0.35897f));
+	REQUIRE(rtc::float_equals(B(2, 2), 0.43590f));
+	REQUIRE(rtc::float_equals(B(2, 3), 0.92308f));
 
-	REQUIRE(B(3, 0) == Catch::Approx(-0.69231f).margin(rtc::EPSILON));
-	REQUIRE(B(3, 1) == Catch::Approx(-0.69231f).margin(rtc::EPSILON));
-	REQUIRE(B(3, 2) == Catch::Approx(-0.76923f).margin(rtc::EPSILON));
-	REQUIRE(B(3, 3) == Catch::Approx(-1.92308f).margin(rtc::EPSILON));
+	REQUIRE(rtc::float_equals(B(3, 0), -0.69231f));
+	REQUIRE(rtc::float_equals(B(3, 1), -0.69231f));
+	REQUIRE(rtc::float_equals(B(3, 2), -0.76923f));
+	REQUIRE(rtc::float_equals(B(3, 3), -1.92308f));
 }
 
 TEST_CASE("Calculating the inverse of a third matrix") {
@@ -691,25 +690,25 @@ TEST_CASE("Calculating the inverse of a third matrix") {
 	A(3, 3) = 2.0f;
 
 	Matrix B = A.inverse();
-	REQUIRE(B(0, 0) == Catch::Approx(-0.04074f).margin(rtc::EPSILON));
-	REQUIRE(B(0, 1) == Catch::Approx(-0.07778f).margin(rtc::EPSILON));
-	REQUIRE(B(0, 2) == Catch::Approx(0.14444f).margin(rtc::EPSILON));
-	REQUIRE(B(0, 3) == Catch::Approx(-0.22222f).margin(rtc::EPSILON));
+	REQUIRE(rtc::float_equals(B(0, 0), -0.04074f));
+	REQUIRE(rtc::float_equals(B(0, 1), -0.07778f));
+	REQUIRE(rtc::float_equals(B(0, 2), 0.14444f));
+	REQUIRE(rtc::float_equals(B(0, 3), -0.22222f));
 
-	REQUIRE(B(1, 0) == Catch::Approx(-0.07778f).margin(rtc::EPSILON));
-	REQUIRE(B(1, 1) == Catch::Approx(0.03333f).margin(rtc::EPSILON));
-	REQUIRE(B(1, 2) == Catch::Approx(0.36667f).margin(rtc::EPSILON));
-	REQUIRE(B(1, 3) == Catch::Approx(-0.33333f).margin(rtc::EPSILON));
+	REQUIRE(rtc::float_equals(B(1, 0), -0.07778f));
+	REQUIRE(rtc::float_equals(B(1, 1), 0.03333f));
+	REQUIRE(rtc::float_equals(B(1, 2), 0.36667f));
+	REQUIRE(rtc::float_equals(B(1, 3), -0.33333f));
 
-	REQUIRE(B(2, 0) == Catch::Approx(-0.02901f).margin(rtc::EPSILON));
-	REQUIRE(B(2, 1) == Catch::Approx(-0.14630f).margin(rtc::EPSILON));
-	REQUIRE(B(2, 2) == Catch::Approx(-0.10926f).margin(rtc::EPSILON));
-	REQUIRE(B(2, 3) == Catch::Approx(0.12963f).margin(rtc::EPSILON));
+	REQUIRE(rtc::float_equals(B(2, 0), -0.02901f));
+	REQUIRE(rtc::float_equals(B(2, 1), -0.14630f));
+	REQUIRE(rtc::float_equals(B(2, 2), -0.10926f));
+	REQUIRE(rtc::float_equals(B(2, 3), 0.12963f));
 
-	REQUIRE(B(3, 0) == Catch::Approx(0.17778f).margin(rtc::EPSILON));
-	REQUIRE(B(3, 1) == Catch::Approx(0.06667f).margin(rtc::EPSILON));
-	REQUIRE(B(3, 2) == Catch::Approx(-0.26667f).margin(rtc::EPSILON));
-	REQUIRE(B(3, 3) == Catch::Approx(0.33333f).margin(rtc::EPSILON));
+	REQUIRE(rtc::float_equals(B(3, 0), 0.17778f));
+	REQUIRE(rtc::float_equals(B(3, 1), 0.06667f));
+	REQUIRE(rtc::float_equals(B(3, 2), -0.26667f));
+	REQUIRE(rtc::float_equals(B(3, 3), 0.33333f));
 }
 
 TEST_CASE("Multiplying a product by its inverse") {

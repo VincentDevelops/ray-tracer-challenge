@@ -14,7 +14,7 @@
 
 	const float magnitude = Tuple::magnitude(vector);
 
-	if (std::fabs(magnitude) < Tuple::EPSILON)
+	if (std::fabs(magnitude) < rtc::EPSILON)
 		throw std::logic_error("normalize error: zero vector passed");
 
 	return Tuple::vector(
@@ -45,24 +45,5 @@
 // ================================================
 // OPERATOR OVERLOADS =============================
 // ================================================
-
-
-// returns true if each value is within marginal equality
-//  of approximately epsilon
-[[nodiscard]] bool Tuple::operator==(const Tuple& tuple) const {
-
-	if (std::fabs(x - tuple.x) > Tuple::EPSILON)
-		return false;
-	if (std::fabs(y - tuple.y) > Tuple::EPSILON)
-		return false;
-	if (std::fabs(z - tuple.z) > Tuple::EPSILON)
-		return false;
-	if (std::fabs(w - tuple.w) > Tuple::EPSILON)
-		return false;
-
-	return true;
-}
-
-
 
 

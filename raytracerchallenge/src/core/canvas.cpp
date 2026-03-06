@@ -76,11 +76,11 @@ std::string Canvas::canvas_to_ppm(const Canvas& c) {
     std::size_t line_len = 0;
 
     // look through every line
-    for (int row = 0; row < c.height; ++row) {
+    for (std::size_t row = 0; row < c.height; ++row) {
         line_len = 0;
 
         // loop through column
-        for (int col = 0; col < c.width; ++col) {
+        for (std::size_t col = 0; col < c.width; ++col) {
             Color px = c.pixel_at(col, row);
 
             // clamp rgb values to integers with rounding
@@ -91,7 +91,7 @@ std::string Canvas::canvas_to_ppm(const Canvas& c) {
             };
 
             // write values to string
-            for (int i = 0; i < 3; ++i) {
+            for (std::size_t i = 0; i < 3; ++i) {
                 std::string token = std::to_string(vals[i]);
 
                 // if not at the start of line make space before value

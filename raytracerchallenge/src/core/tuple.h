@@ -3,13 +3,15 @@
 #ifndef TUPLE_H
 #define TUPLE_H
 
+#include "core/constants.h"
+#include "core/math_utils.h"
+
 struct Tuple {
 
 private:
 	static constexpr float VECTOR = 0.0f;
 	static constexpr float POINT = 1.0f;
 	static constexpr float DEFAULT = 0.0f;
-	static constexpr float EPSILON = 0.000001f;
 
 public:
 
@@ -96,9 +98,11 @@ public:
 	// OPERATOR OVERLOADS =============================
 	// ================================================
 
-	// returns true if this object has equal attributes
-	//  to other
-	[[nodiscard]] bool operator==(const Tuple& other) const;
+	// returns true if each value is within marginal equality
+	//  of approximately epsilon
+	[[nodiscard]] bool operator==(const Tuple& other) const {
+		return rtc::float_equals(x, other.x) && rtc::float_equals(y, other.y) && rtc::float_equals(z, other.z) && rtc::float_equals(w, other.w);
+	}
 
 	// returns a Tuple with added attributes of calling
 	//  Tuple and other could be either vector or point

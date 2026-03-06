@@ -2,12 +2,13 @@
 #define RTC_COLOR_H
 
 #include <cmath>
+#include "core/math_utils.h"
+#include "core/constants.h"
 
 struct Color {
 private:
 	static constexpr float BLACK = 0.0f;
 	static constexpr float WHITE = 1.0f;
-	static constexpr float EPSILON = 0.000001f;
 
 public: 
 
@@ -37,14 +38,7 @@ public:
 	// ================================================
 
 	[[nodiscard]] bool operator==(const Color& other) const {
-		if (std::fabs(r - other.r) > EPSILON)
-			return false;
-		if (std::fabs(g - other.g) > EPSILON)
-			return false;
-		if (std::fabs(b - other.b) > EPSILON)
-			return false;
-
-		return true;
+		return rtc::float_equals(r, other.r) && rtc::float_equals(g, other.g) && rtc::float_equals(b, other.b);
 	}
 
 	[[nodiscard]] constexpr Color operator+(const Color& other) const {
