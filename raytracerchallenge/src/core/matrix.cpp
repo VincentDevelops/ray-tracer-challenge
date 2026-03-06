@@ -2,6 +2,7 @@
 #include "matrix.h"
 #include "matrix.h"
 #include "matrix.h"
+#include "matrix.h"
 #include "core/matrix.h"
 #include "core/tuple.h"
 
@@ -140,7 +141,7 @@ Matrix Matrix::scaling(const float x, const float y, const float z) {
     return out;
 }
 
-Matrix Matrix::rotation_x(float radian)
+Matrix Matrix::rotation_x(const float radian)
 {
     Matrix out(4);
     out(0, 0) = 1.0f;
@@ -153,7 +154,7 @@ Matrix Matrix::rotation_x(float radian)
     return out;
 }
 
-Matrix Matrix::rotation_y(float radian)
+Matrix Matrix::rotation_y(const float radian)
 {
     Matrix out(4);
     out(0, 0) = std::cos(radian);
@@ -166,13 +167,30 @@ Matrix Matrix::rotation_y(float radian)
     return out;
 }
 
-Matrix Matrix::rotation_z(float radian)
+Matrix Matrix::rotation_z(const float radian)
 {
     Matrix out(4);
     out(0, 0) = std::cos(radian);
     out(0, 1) = -(std::sin(radian));
     out(1, 0) = std::sin(radian);
     out(1, 1) = std::cos(radian);
+    out(2, 2) = 1.0f;
+    out(3, 3) = 1.0f;
+
+    return out;
+}
+
+Matrix Matrix::shearing(const float x_y, const float x_z, const float y_x, const float y_z, const float z_x, const float z_y)
+{
+    Matrix out(4);
+    out(0, 0) = 1.0f;
+    out(0, 1) = x_y;
+    out(0, 2) = x_z;
+    out(1, 0) = y_x;
+    out(1, 1) = 1.0f;
+    out(1, 2) = y_z;
+    out(2, 0) = z_x;
+    out(2, 1) = z_y;
     out(2, 2) = 1.0f;
     out(3, 3) = 1.0f;
 

@@ -88,47 +88,47 @@ TEST_CASE("Rotating a point around the z-axis", "[transformations][matrix][tuple
 	REQUIRE((full_quarter * p) == Tuple::point(-1.0f, 0.0f, 0.0f));
 }
 
-//TEST_CASE("A shearing transformation moves x in proportion to y", "[transformations][matrix][tuple]") {
-//	Matrix transform = Matrix::shearing(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-//	Tuple p = Tuple::point(2.0f, 3.0f, 4.0f);
-//
-//	REQUIRE((transform * p) == Tuple::point(5.0f, 3.0f, 4.0f));
-//}
-//
-//TEST_CASE("A shearing transformation moves x in proportion to Z", "[transformations][matrix][tuple]") {
-//	Matrix transform = Matrix::shearing(0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-//	Tuple p = Tuple::point(2.0f, 3.0f, 4.0f);
-//
-//	REQUIRE((transform * p) == Tuple::point(6.0f, 3.0f, 4.0f));
-//}
-//
-//TEST_CASE("A shearing transformation moves y in proportion to x", "[transformations][matrix][tuple]") {
-//	Matrix transform = Matrix::shearing(0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f);
-//	Tuple p = Tuple::point(2.0f, 3.0f, 4.0f);
-//
-//	REQUIRE((transform * p) == Tuple::point(2.0f, 5.0f, 4.0f));
-//}
-//
-//TEST_CASE("A shearing transformation moves y in proportion to z", "[transformations][matrix][tuple]") {
-//	Matrix transform = Matrix::shearing(0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f);
-//	Tuple p = Tuple::point(2.0f, 3.0f, 4.0f);
-//
-//	REQUIRE((transform * p) == Tuple::point(2.0f, 7.0f, 4.0f));
-//}
-//
-//TEST_CASE("A shearing transformation moves z in proportion to x", "[transformations][matrix][tuple]") {
-//	Matrix transform = Matrix::shearing(0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-//	Tuple p = Tuple::point(2.0f, 3.0f, 4.0f);
-//
-//	REQUIRE((transform * p) == Tuple::point(2.0f, 3.0f, 6.0f));
-//}
-//
-//TEST_CASE("A shearing transformation moves z in proportion to y", "[transformations][matrix][tuple]") {
-//	Matrix transform = Matrix::shearing(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
-//	Tuple p = Tuple::point(2.0f, 3.0f, 4.0f);
-//
-//	REQUIRE((transform * p) == Tuple::point(2.0f, 3.0f, 7.0f));
-//}
+TEST_CASE("A shearing transformation moves x in proportion to y", "[transformations][matrix][tuple]") {
+	Matrix transform = Matrix::shearing(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+	Tuple p = Tuple::point(2.0f, 3.0f, 4.0f);
+
+	REQUIRE((transform * p) == Tuple::point(5.0f, 3.0f, 4.0f));
+}
+
+TEST_CASE("A shearing transformation moves x in proportion to Z", "[transformations][matrix][tuple]") {
+	Matrix transform = Matrix::shearing(0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+	Tuple p = Tuple::point(2.0f, 3.0f, 4.0f);
+
+	REQUIRE((transform * p) == Tuple::point(6.0f, 3.0f, 4.0f));
+}
+
+TEST_CASE("A shearing transformation moves y in proportion to x", "[transformations][matrix][tuple]") {
+	Matrix transform = Matrix::shearing(0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f);
+	Tuple p = Tuple::point(2.0f, 3.0f, 4.0f);
+
+	REQUIRE((transform * p) == Tuple::point(2.0f, 5.0f, 4.0f));
+}
+
+TEST_CASE("A shearing transformation moves y in proportion to z", "[transformations][matrix][tuple]") {
+	Matrix transform = Matrix::shearing(0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f);
+	Tuple p = Tuple::point(2.0f, 3.0f, 4.0f);
+
+	REQUIRE((transform * p) == Tuple::point(2.0f, 7.0f, 4.0f));
+}
+
+TEST_CASE("A shearing transformation moves z in proportion to x", "[transformations][matrix][tuple]") {
+	Matrix transform = Matrix::shearing(0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+	Tuple p = Tuple::point(2.0f, 3.0f, 4.0f);
+
+	REQUIRE((transform * p) == Tuple::point(2.0f, 3.0f, 6.0f));
+}
+
+TEST_CASE("A shearing transformation moves z in proportion to y", "[transformations][matrix][tuple]") {
+	Matrix transform = Matrix::shearing(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+	Tuple p = Tuple::point(2.0f, 3.0f, 4.0f);
+
+	REQUIRE((transform * p) == Tuple::point(2.0f, 3.0f, 7.0f));
+}
 //
 //TEST_CASE("Individual transformations are applied in sequence", "[transformations][matrix][tuple]") {
 //	Tuple p = Tuple::point(1.0f, 0.0f, 1.0f);

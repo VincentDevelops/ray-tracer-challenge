@@ -139,7 +139,7 @@ public:
 	// |0 cos(radian) -sin(radian) 0 |
 	// |0 sin(radian) cos(radian)  0 |
 	// |0		0		  0		   1 |
-	[[nodiscard]] static Matrix rotation_x(float radian);
+	[[nodiscard]] static Matrix rotation_x(const float radian);
 
 	// Rotates a tuple some number of radians around the y-axis
 	// returns a 4x4 matrix in form
@@ -148,7 +148,7 @@ public:
 	// |0			 1		  0      0 |
 	// |-sin(radian) 0	cos(radian)  0 |
 	// |0			 0		  0		 1 |
-	[[nodiscard]] static Matrix rotation_y(float radian);
+	[[nodiscard]] static Matrix rotation_y(const float radian);
 
 	// Rotates a tuple some number of radians around the z-axis
 	// returns a 4x4 matrix in form
@@ -157,7 +157,17 @@ public:
 	// |sin(radian)	 cos(radian)  0  0 |
 	// |  0          0            0  0 |
 	// |  0			 0		      0	 1 |
-	[[nodiscard]] static Matrix rotation_z(float radian);
+	[[nodiscard]] static Matrix rotation_z(const float radian);
+
+
+	// Used to slant lines aka change tuple proportions
+	// returns a 4x4 matrix in form
+	// ------------------
+	// | 1   x_y x_z  0 |
+	// | y_z  1	 y_z  0 |
+	// | z_x z_y  1   0 |
+	// |  0   0	  0   1 |
+	[[nodiscard]] static Matrix shearing(const float x_y, const float x_z, const float y_x, const float y_z, const float z_x, const float z_y);
 
 	// ================================================
 	// OPERATOR OVERLOADS =============================
