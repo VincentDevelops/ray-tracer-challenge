@@ -2,12 +2,12 @@
 #include "core/matrix.h"
 #include "core/tuple.h"
 
-//TEST_CASE("Multiplying by a translation matrix") {
-//	Matrix transform = translation(5, -3, 2);
-//	Tuple p = Tuple::point(-3, 4, 5);
-//
-//	REQUIRE((transform * p) == Tuple::point(2, 1, 7));
-//}
+TEST_CASE("Multiplying by a translation matrix", "[transformations]") {
+	Matrix transform = Matrix::translation(5, -3, 2);
+	Tuple p = Tuple::point(-3, 4, 5);
+
+	REQUIRE((transform * p) == Tuple::point(2, 1, 7));
+}
 //
 //TEST_CASE("Multiplying by the inverse of a translation matrix") {
 //	Matrix transform = translation(5.0f, -3.0f, 2.0f);

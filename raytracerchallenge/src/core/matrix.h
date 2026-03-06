@@ -15,9 +15,6 @@ private:
 	std::size_t columns = 0;
 	std::vector<float> grid;
 
-	[[nodiscard]] float determinant_2x2() const;
-	[[nodiscard]] float determinant_3x3() const;
-
 public:
 
 	explicit Matrix() = default;
@@ -116,6 +113,12 @@ public:
 	// column, and so forth.
 	[[nodiscard]] static Matrix transpose(const Matrix matrix);
 	
+	// Returns a 4x4 translation matrix in the form
+	// |1 0 0 x |
+	// |0 1 0 y |
+	// |0 0 1 z |
+	// |0 0 0 1 |
+	[[nodiscard]] static Matrix translation(const float x, const float y, const float z);
 	
 
 	// ================================================

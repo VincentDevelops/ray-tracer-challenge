@@ -1,23 +1,9 @@
-#include "matrix.h"
 #include "core/matrix.h"
 #include "core/tuple.h"
 
 // ================================================
 // PRIVATE FUNCTIONS ==============================
 // ================================================
-
-
-float Matrix::determinant_2x2() const {
-    return (*this)(0, 0) * (*this)(1, 1) - (*this)(0, 1) * (*this)(1, 0);
-}
-
-float Matrix::determinant_3x3() const
-{
-    return (*this)(0, 0) * cofactor(0, 0)
-        + (*this)(0, 1) * cofactor(0, 1)
-        + (*this)(0, 2) * cofactor(0, 2);
-
-}
 
 // ================================================
 // GENERAL FUNCTIONS ==============================
@@ -122,6 +108,20 @@ Matrix Matrix::transpose(const Matrix matrix) {
             }
         }
     }
+
+    return out;
+}
+
+Matrix Matrix::translation(const float x, const float y, const float z) {
+    Matrix out(4);
+    out(0, 0) = 1.0f;
+    out(1, 1) = 1.0f;
+    out(2, 2) = 1.0f;
+    out(3, 3) = 1.0f;
+
+    out(0, 3) = x;
+    out(1, 3) = y;
+    out(2, 3) = z;
 
     return out;
 }

@@ -42,7 +42,7 @@ struct Canvas {
 
 	// retrieves pixel (Color) found at coordinates x,y
 	// must be used by Canvas object
-	[[nodiscard]] Color pixel_at(int x, int y) const;
+	[[nodiscard]] Color pixel_at(std::size_t x, std::size_t y) const;
 
 
 

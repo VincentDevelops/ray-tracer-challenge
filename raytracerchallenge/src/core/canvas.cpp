@@ -32,7 +32,7 @@ bool Canvas::is_empty() const {
     return pixels.empty();
 }
 
-Color Canvas::pixel_at(int x, int y) const {
+Color Canvas::pixel_at(std::size_t x, std::size_t y) const {
     return pixels[index(x,y)];
 }
 
