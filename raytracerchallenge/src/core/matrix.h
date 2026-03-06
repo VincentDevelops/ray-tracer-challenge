@@ -75,7 +75,7 @@ public:
 
 	// returns a positive or negative minor depending on included (rol, col) used
 	// ex | + - + |
-	//    | - = - |  if a coordinate lies in a (-) the minor will be negative
+	//    | - + - |  if a coordinate lies in a (-) the minor will be negative
 	//	  | + - + |
 	[[nodiscard]] float cofactor(std::size_t row_, std::size_t col_) const {
 		float m = minor(row_, col_);
@@ -114,6 +114,7 @@ public:
 	[[nodiscard]] static Matrix transpose(const Matrix matrix);
 	
 	// Returns a 4x4 translation matrix in the form
+	// ----------
 	// |1 0 0 x |
 	// |0 1 0 y |
 	// |0 0 1 z |
@@ -124,11 +125,39 @@ public:
 	// to be larger if scale value is more than 1, or smaller if less than 1.
 	// Can also reflect a point by scaling the x component by -1
 	// Returns a 4x4 matrix in form
+	// ----------
 	// |x 0 0 0 |
 	// |0 y 0 0 |
 	// |0 0 z 0 |
 	// |0 0 0 1 |
 	[[nodiscard]] static Matrix scaling(const float x, const float y, const float z);
+
+	// Rotates a tuple some number of radians around the x-axis
+	// returns a 4x4 matrix in form
+	// -------------------------------
+	// |1		0		  0		   0 |
+	// |0 cos(radian) -sin(radian) 0 |
+	// |0 sin(radian) cos(radian)  0 |
+	// |0		0		  0		   1 |
+	[[nodiscard]] static Matrix rotation_x(float radian);
+
+	// Rotates a tuple some number of radians around the y-axis
+	// returns a 4x4 matrix in form
+	// ---------------------------------
+	// |cos(radian)	 0	sin(radian)  0 |
+	// |0			 1		  0      0 |
+	// |-sin(radian) 0	cos(radian)  0 |
+	// |0			 0		  0		 1 |
+	[[nodiscard]] static Matrix rotation_y(float radian);
+
+	// Rotates a tuple some number of radians around the z-axis
+	// returns a 4x4 matrix in form
+	// ---------------------------------
+	// |cos(radian)	 -sin(radian) 0  0 |
+	// |sin(radian)	 cos(radian)  0  0 |
+	// |  0          0            0  0 |
+	// |  0			 0		      0	 1 |
+	[[nodiscard]] static Matrix rotation_z(float radian);
 
 	// ================================================
 	// OPERATOR OVERLOADS =============================
