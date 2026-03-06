@@ -129,29 +129,29 @@ TEST_CASE("A shearing transformation moves z in proportion to y", "[transformati
 
 	REQUIRE((transform * p) == Tuple::point(2.0f, 3.0f, 7.0f));
 }
-//
-//TEST_CASE("Individual transformations are applied in sequence", "[transformations][matrix][tuple]") {
-//	Tuple p = Tuple::point(1.0f, 0.0f, 1.0f);
-//	Matrix A = Matrix::rotation_x(rtc::PI / 2.0f);
-//	Matrix B = Matrix::scaling(5.0f, 5.0f, 5.0f);
-//	Matrix C = Matrix::translation(10.0f, 5.0f, 7.0f);
-//
-//	Tuple p2 = A * p;
-//	REQUIRE(p2 == Tuple::point(1.0f, -1.0f, 0.0f));
-//	
-//	Tuple p3 = B * p2;
-//	REQUIRE(p3 == Tuple::point(5.0f, -5.0f, 0.0f));
-//
-//	Tuple p4 = C * p3;
-//	REQUIRE(p4 == Tuple::point(15.0f, 0.0f, 7.0f));
-//}
-//
-//TEST_CASE("Chained transformations must be applied in reverse order", "[transformations][matrix][tuple]") {
-//	Tuple p = Tuple::point(1.0f, 0.0f, 1.0f);
-//	Matrix A = Matrix::rotation_x(rtc::PI / 2.0f);
-//	Matrix B = Matrix::scaling(5.0f, 5.0f, 5.0f);
-//	Matrix C = Matrix::translation(10.0f, 5.0f, 7.0f);
-//
-//	Matrix T = C * B * A;
-//	REQUIRE((T * p) == Tuple::point(15.0f, 0.0f, 7.0f));
-//}
+
+TEST_CASE("Individual transformations are applied in sequence", "[transformations][matrix][tuple]") {
+	Tuple p = Tuple::point(1.0f, 0.0f, 1.0f);
+	Matrix A = Matrix::rotation_x(rtc::PI / 2.0f);
+	Matrix B = Matrix::scaling(5.0f, 5.0f, 5.0f);
+	Matrix C = Matrix::translation(10.0f, 5.0f, 7.0f);
+
+	Tuple p2 = A * p;
+	REQUIRE(p2 == Tuple::point(1.0f, -1.0f, 0.0f));
+	
+	Tuple p3 = B * p2;
+	REQUIRE(p3 == Tuple::point(5.0f, -5.0f, 0.0f));
+
+	Tuple p4 = C * p3;
+	REQUIRE(p4 == Tuple::point(15.0f, 0.0f, 7.0f));
+}
+
+TEST_CASE("Chained transformations must be applied in reverse order", "[transformations][matrix][tuple]") {
+	Tuple p = Tuple::point(1.0f, 0.0f, 1.0f);
+	Matrix A = Matrix::rotation_x(rtc::PI / 2.0f);
+	Matrix B = Matrix::scaling(5.0f, 5.0f, 5.0f);
+	Matrix C = Matrix::translation(10.0f, 5.0f, 7.0f);
+
+	Matrix T = C * B * A;
+	REQUIRE((T * p) == Tuple::point(15.0f, 0.0f, 7.0f));
+}
