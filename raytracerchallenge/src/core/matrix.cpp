@@ -1,3 +1,4 @@
+#include "matrix.h"
 #include "core/matrix.h"
 #include "core/tuple.h"
 
@@ -122,6 +123,16 @@ Matrix Matrix::translation(const float x, const float y, const float z) {
     out(0, 3) = x;
     out(1, 3) = y;
     out(2, 3) = z;
+
+    return out;
+}
+
+Matrix Matrix::scaling(const float x, const float y, const float z) {
+    Matrix out(4);
+    out(0, 0) = x;
+    out(1, 1) = y;
+    out(2, 2) = z;
+    out(3, 3) = 1.0f;
 
     return out;
 }

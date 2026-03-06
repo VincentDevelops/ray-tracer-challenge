@@ -120,6 +120,15 @@ public:
 	// |0 0 0 1 |
 	[[nodiscard]] static Matrix translation(const float x, const float y, const float z);
 	
+	// when applied to an object centered at origin, it will scale all points on the object
+	// to be larger if scale value is more than 1, or smaller if less than 1.
+	// Can also reflect a point by scaling the x component by -1
+	// Returns a 4x4 matrix in form
+	// |x 0 0 0 |
+	// |0 y 0 0 |
+	// |0 0 z 0 |
+	// |0 0 0 1 |
+	[[nodiscard]] static Matrix scaling(const float x, const float y, const float z);
 
 	// ================================================
 	// OPERATOR OVERLOADS =============================
