@@ -12,7 +12,7 @@ TEST_CASE("Tuple() constructor check") {
 }
 
 TEST_CASE("Tuple(x,y,z,w) constructor check point") {
-    Tuple tuple(4.3, -4.2, 3.1, 1.0);
+    Tuple tuple(4.3f, -4.2f, 3.1f, 1.0f);
     REQUIRE(tuple.x == 4.3f);
     REQUIRE(tuple.y == -4.2f);
     REQUIRE(tuple.z == 3.1f);

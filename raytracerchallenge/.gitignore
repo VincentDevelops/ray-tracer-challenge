@@ -1,14 +1,34 @@
-/out/
-/build/
-/.vs/
-/CMakeFiles/
-/CMakeCache.txt
+# Build output
+out/
+build/
+CMakeFiles/
+CMakeCache.txt
+
+# Visual Studio / IntelliSense
+.vs/
+*.ipch
+*.suo
+*.user
+*.VC.db
+*.VC.opendb
+Browse.VC.db
+Browse.VC.opendb
+Browse.VC.db-*
+slnx.sqlite
+*.vsidx
+*.vscidx
+
+# C++ build artifacts
 *.exe
 *.obj
 *.pdb
-# vcpkg
-/vcpkg/
-/vcpkg_installed/
-/installed/
-/buildtrees/
-/packages/
+*.ilk
+
+# vcpkg (generated)
+vcpkg_installed/
+installed/
+buildtrees/
+packages/
+
+# vcpkg tool itself (only ignore if you keep it inside repo)
+vcpkg/
