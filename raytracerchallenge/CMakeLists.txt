@@ -23,22 +23,22 @@ add_library(rtc
   "src/core/canvas.cpp" "src/core/canvas.h"
   "src/core/color.h" 
   "src/core/canvas.cpp" "src/core/canvas.h" 
-  "src/practice/chapter2_ppm.h" 
+   
   "src/core/matrix.h" "src/core/matrix.cpp" 
   "src/core/constants.h" 
   "src/core/math_utils.h" 
-  "src/practice/chapter3_matrices.cpp" "src/practice/chapter3_matrices.h")
+  "src/practice/chapter3_matrices.cpp" "src/practice/chapter3_matrices.h" "src/practice/chapter4_analog.h")
 
 add_executable(raytracerchallenge
   "src/raytracerchallenge.cpp" 
   "src/practice/chapter1_projectile.cpp" "src/practice/chapter1_projectile.h" 
   "src/core/color.h"  
   "src/core/canvas.cpp" "src/core/canvas.h" 
-  "src/practice/chapter2_ppm.h" 
+   
   "src/core/matrix.h" "src/core/matrix.cpp" 
   "src/core/constants.h" 
   "src/core/math_utils.h" 
-  "src/practice/chapter3_matrices.cpp" "src/practice/chapter3_matrices.h")
+  "src/practice/chapter3_matrices.cpp" "src/practice/chapter3_matrices.h" "src/practice/chapter4_analog.h")
 
 target_link_libraries(raytracerchallenge PRIVATE rtc)
 
@@ -49,7 +49,8 @@ add_executable(rtc_tests
   "tests/core/tuple.tests.cpp"
   "tests/core/color.tests.cpp"
   "tests/core/canvas.tests.cpp"
-  "tests/core/matrix.tests.cpp" "tests/core/transformations.tests.cpp")
+  "tests/core/matrix.tests.cpp" 
+  "tests/core/transformations.tests.cpp")
 
 target_link_libraries(rtc_tests PRIVATE rtc Catch2::Catch2WithMain)
 target_include_directories(rtc PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")

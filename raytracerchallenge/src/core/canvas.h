@@ -20,7 +20,6 @@ struct Canvas {
 	// fills entire canvas with a certain color
 	void fill_with(const Color& c);
 
-
 	//void fill_with(Tuple x1, Tuple x2, Tuple y1, Tuple y2);
 	void write_pixel(int x, int y, Color color);
 
