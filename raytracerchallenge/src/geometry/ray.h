@@ -12,6 +12,10 @@ struct Ray {
 	Ray(Tuple o_, Tuple d_) :
 		origin(o_), direction(d_) {}
 
+	Tuple position(float t) {
+		return origin + direction * t;
+	}
+
 
 
 

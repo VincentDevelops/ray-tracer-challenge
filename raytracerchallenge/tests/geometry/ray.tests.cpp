@@ -13,45 +13,44 @@ TEST_CASE("Creating and querying a ray", "[ray]") {
 	REQUIRE(r.origin == origin);
 	REQUIRE(r.direction == direction);
 }
-//
-//TEST_CASE("Computing a point from a distace", "[ray]") {
-//	Ray ray(Tuple::point(2.0f, 3.0f, 4.0f), Tuple::vector(1.0f, 0.0f, 0.0f));
-//	
-//	REQUIRE(ray.position(0.0f) == Tuple::point(2.0f, 3.0f, 4.0f));
-//	REQUIRE(ray.position(1.0f) == Tuple::point(2.0f, 3.0f, 4.0f));
-//	REQUIRE(ray.position(-1.0f) == Tuple::point(1.0f, 3.0f, 4.0f));
-//	REQUIRE(ray.position(2.0f) == Tuple::point(4.5f, 3.0f, 4.0f));
-//
-//}
-//
-//TEST_CASE("A ray intersects a sphere at two points", "[ray][intersection][sphere]") {
-//	Ray ray(Tuple::point(0.0f, 0.0f, -5.0f), Tuple::vector(0.0f, 0.0f, 1.0f));
-//	Sphere sphere;
-//	std::vector<Intersection> xs = sphere.intersect(ray);
-//	
-//	REQUIRE(xs.size() == 2);
-//	REQUIRE(rtc::float_equals(xs[0].t, 5.0f));
-//	REQUIRE(rtc::float_equals(xs[1].t, 5.0f));
-//
-//}
-//
-//TEST_CASE("A ray misses a sphere", "[ray][intersection][sphere]") {
-//	Ray ray(Tuple::point(0.0f, 2.0f, -5.0f), Tuple::vector(0.0f, 0.0f, 1.0f));
-//	Sphere sphere;
-//	std::vector<Intersection> xs = sphere.intersect(ray);
-//
-//	REQUIRE(xs.size() == 0);
-//}
-//
-//TEST_CASE("A ray originates inside a sphere", "[ray][intersection][sphere]") {
-//	Ray ray(Tuple::point(0.0f, 0.0f, 0.0f), Tuple::vector(0.0f, 0.0f, 1.0f));
-//	Sphere sphere;
-//	std::vector<Intersection> xs = sphere.intersect(ray);
-//
-//	REQUIRE(xs.size() == 2);
-//	REQUIRE(rtc::float_equals(xs[0].t, -1.0f));
-//	REQUIRE(xs[1].t == 1.0f);
-//}
+
+TEST_CASE("Computing a point from a distace", "[ray]") {
+	Ray ray(Tuple::point(2.0f, 3.0f, 4.0f), Tuple::vector(1.0f, 0.0f, 0.0f));
+	
+	REQUIRE(ray.position(0.0f) == Tuple::point(2.0f, 3.0f, 4.0f));
+	REQUIRE(ray.position(1.0f) == Tuple::point(3.0f, 3.0f, 4.0f));
+	REQUIRE(ray.position(-1.0f) == Tuple::point(1.0f, 3.0f, 4.0f));
+	REQUIRE(ray.position(2.5f) == Tuple::point(4.5f, 3.0f, 4.0f));
+}
+
+TEST_CASE("A ray intersects a sphere at two points", "[ray][intersection][sphere]") {
+	Ray ray(Tuple::point(0.0f, 0.0f, -5.0f), Tuple::vector(0.0f, 0.0f, 1.0f));
+	Sphere sphere;
+	std::vector<Intersection> xs = sphere.intersect(ray);
+	
+	REQUIRE(xs.size() == 2);
+	REQUIRE(rtc::float_equals(xs[0].t, 5.0f));
+	REQUIRE(rtc::float_equals(xs[1].t, 5.0f));
+
+}
+
+TEST_CASE("A ray misses a sphere", "[ray][intersection][sphere]") {
+	Ray ray(Tuple::point(0.0f, 2.0f, -5.0f), Tuple::vector(0.0f, 0.0f, 1.0f));
+	Sphere sphere;
+	std::vector<Intersection> xs = sphere.intersect(ray);
+
+	REQUIRE(xs.size() == 0);
+}
+
+TEST_CASE("A ray originates inside a sphere", "[ray][intersection][sphere]") {
+	Ray ray(Tuple::point(0.0f, 0.0f, 0.0f), Tuple::vector(0.0f, 0.0f, 1.0f));
+	Sphere sphere;
+	std::vector<Intersection> xs = sphere.intersect(ray);
+
+	REQUIRE(xs.size() == 2);
+	REQUIRE(rtc::float_equals(xs[0].t, -1.0f));
+	REQUIRE(rtc::float_equals(xs[1].t, 1.0f));
+}
 //
 //TEST_CASE("A sphere is behind a ray", "[ray][intersection][sphere]") {
 //	Ray ray(Tuple::point(0.0f, 0.0f, 5.0f), Tuple::vector(0.0f, 0.0f, 1.0f));
