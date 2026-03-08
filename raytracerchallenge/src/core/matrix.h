@@ -169,6 +169,16 @@ public:
 	// |  0   0	  0   1 |
 	[[nodiscard]] static Matrix shearing(const float x_y, const float x_z, const float y_x, const float y_z, const float z_x, const float z_y);
 
+
+	// retruns the identity function of size n
+	[[nodiscard]] static Matrix identity(std::size_t n) {
+		Matrix out(n, n);
+		for (std::size_t diagonal = 0; diagonal < n; diagonal++)
+			out(diagonal, diagonal) = 1.0f;
+
+		return out;
+	}
+
 	// ================================================
 	// OPERATOR OVERLOADS =============================
 	// ================================================

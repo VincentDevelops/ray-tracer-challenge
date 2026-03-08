@@ -6,7 +6,14 @@
 #include "core/math_utils.h"
 
 struct Ray {
-	
+	Tuple origin = Tuple::point(0.0f, 0.0f, 0.0f);
+	Tuple direction = Tuple::vector(0.0f, 0.0f, 0.0f);
+
+	Ray(Tuple o_, Tuple d_) :
+		origin(o_), direction(d_) {}
+
+
+
 
 };
 

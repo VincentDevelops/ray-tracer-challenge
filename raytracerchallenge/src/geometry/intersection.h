@@ -1,7 +1,7 @@
 #ifndef INTERSECTION_H
 #define INTERSECTION_H
 
-#include "geometry/sphere.h"
+#include "shapes/sphere.h"
 
 struct Intersection {
 	float t;
