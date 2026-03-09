@@ -29,9 +29,19 @@ TEST_CASE("A ray intersects a sphere at two points", "[ray][intersection][sphere
 	std::vector<Intersection> xs = sphere.intersect(ray);
 	
 	REQUIRE(xs.size() == 2);
+	REQUIRE(rtc::float_equals(xs[0].t, 4.0f));
+	REQUIRE(rtc::float_equals(xs[1].t, 6.0f));
+
+}
+
+TEST_CASE("A ray intersects a sphere at a tangent", "[ray]") {
+	Ray ray(Tuple::point(0.0f, 1.0f, -5.0f), Tuple::vector(0.0f, 0.0f, 1.0f));
+	Sphere sphere;
+	std::vector<Intersection> xs = sphere.intersect(ray);
+
+	REQUIRE(xs.size() == 2);
 	REQUIRE(rtc::float_equals(xs[0].t, 5.0f));
 	REQUIRE(rtc::float_equals(xs[1].t, 5.0f));
-
 }
 
 TEST_CASE("A ray misses a sphere", "[ray][intersection][sphere]") {
