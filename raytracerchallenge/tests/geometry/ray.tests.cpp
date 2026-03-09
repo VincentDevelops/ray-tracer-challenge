@@ -61,16 +61,16 @@ TEST_CASE("A ray originates inside a sphere", "[ray][intersection][sphere]") {
 	REQUIRE(rtc::float_equals(xs[0].t, -1.0f));
 	REQUIRE(rtc::float_equals(xs[1].t, 1.0f));
 }
-//
-//TEST_CASE("A sphere is behind a ray", "[ray][intersection][sphere]") {
-//	Ray ray(Tuple::point(0.0f, 0.0f, 5.0f), Tuple::vector(0.0f, 0.0f, 1.0f));
-//	Sphere sphere;
-//	std::vector<Intersection> xs = sphere.intersect(ray);
-//
-//	REQUIRE(xs.size() == 2);
-//	REQUIRE(rtc::float_equals(xs[0].t, -6.0f));
-//	REQUIRE(rtc::float_equals(xs[1].t, -4.0f));
-//}
+
+TEST_CASE("A sphere is behind a ray", "[ray][intersection][sphere]") {
+	Ray ray(Tuple::point(0.0f, 0.0f, 5.0f), Tuple::vector(0.0f, 0.0f, 1.0f));
+	Sphere sphere;
+	std::vector<Intersection> xs = sphere.intersect(ray);
+
+	REQUIRE(xs.size() == 2);
+	REQUIRE(rtc::float_equals(xs[0].t, -6.0f));
+	REQUIRE(rtc::float_equals(xs[1].t, -4.0f));
+} 
 //
 //TEST_CASE("An intersection encapsulates t and object", "[intersection][sphere]") {
 //	Sphere s;
