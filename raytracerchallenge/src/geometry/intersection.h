@@ -10,6 +10,7 @@ struct Intersection {
 	Intersection(float t_, const Sphere* o_)
 		: t(t_), object(o_) {}
 
+
 };
 
 #endif // !INTERSECTION_H
