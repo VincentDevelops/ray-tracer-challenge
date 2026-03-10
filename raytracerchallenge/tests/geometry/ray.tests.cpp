@@ -73,11 +73,11 @@ TEST_CASE("A sphere is behind a ray", "[ray][intersection][sphere]") {
 } 
 
 TEST_CASE("An intersection encapsulates t and object", "[intersection][sphere]") {
-	const Sphere* sphere;
-	Intersection intersect(3.5f, sphere);
+	Sphere sphere;
+	Intersection intersect(3.5f, &sphere);
 
 	REQUIRE(rtc::float_equals(intersect.t, 3.5f));
-	REQUIRE(intersect.object == sphere);
+	REQUIRE(intersect.object == &sphere);
 }
 //
 //TEST_CASE("Aggregating intersections", "[intersection][sphere]") {
