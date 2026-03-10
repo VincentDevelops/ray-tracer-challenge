@@ -1,5 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 #include <vector>
+#include <optional>
 #include "geometry/ray.h"
 #include "geometry/intersection.h"
 #include "shapes/sphere.h"
@@ -79,69 +80,69 @@ TEST_CASE("An intersection encapsulates t and object", "[intersection][sphere]")
 	REQUIRE(rtc::float_equals(intersect.t, 3.5f));
 	REQUIRE(intersect.object == &sphere);
 }
-//
-//TEST_CASE("Aggregating intersections", "[intersection][sphere]") {
-//	Sphere s;
-//	Intersection i1(1.0f, s);
-//	Intersection i2(2.0f, s);
-//	std::vector<Intersection> xs = Intersection::intersections(i1, i2);
-//
-//	REQUIRE(xs.size() == 2);
-//	REQUIRE(xs[0].t == 1.0f);
-//	REQUIRE(xs[1].t == 2.0f);
-//}
-//
-//TEST_CASE("Intersect sets the object on the intersection", "[ray][intersection][sphere]") {
-//	Ray ray(Tuple::point(0.0f, 0.0f, -5.0f), Tuple::vector(0.0f, 0.0f, 1.0f));
-//	Sphere sphere;
-//	std::vector<Intersection> xs = sphere.intersect(ray);
-//
-//	REQUIRE(xs.size() == 2);
-//	REQUIRE(xs[0].object == s);
-//	REQUIRE(xs[1].object == s);
-//}
-//
-//TEST_CASE("The hit, when all intersectons have positive t", "[intersection][sphere]") {
-//	Sphere sphere;
-//	Intersection i1(1.0f, sphere);
-//	Intersection i2(2.0f, sphere);
-//	std::vector<Intersection> xs = Intersection::intersections(i1, i2);
-//
-//	Intersection i = Intersection::hit(xs);
-//	REQUIRE(i == i1);
-//}
-//
-//TEST_CASE("The hit, when some intersections have negative t", "[intersection][sphere]") {
-//	Sphere sphere;
-//	Intersection i1(-1.0f, s);
-//	Intersection i2(1.0f, s);
-//	std::vector<Intersection> xs = Intersection::intersections(i1, i2);
-//
-//	Intersection i = Intersection::hit(cs);
-//	REQUIRE(i == i2);
-//}
-//
-//TEST_CASE("The hit, when all intersections have negative t", "[intersection][sphere]") {
-//	Sphere sphere;
-//	Intersection i1(-2.0f, s);
-//	Intersection i2(-1.0f, s);
-//	std::vector<Intersection> xs = Intersection::intersections(i1, i2);
-//
-//	Intersection i = Intersection::hit(cs);
-//	REQUIRE(i == std::nullopt);
-//}
-//
-//TEST_CASE("The hit is always the lowest nonnegative intersection", "[intersection][sphere]") {
-//	Sphere sphere;
-//	Intersection i1(5.0f, sphere);
-//	Intersection i2(7.0f, sphere);
-//	Intersection i3(-3.0f, sphere);
-//	Intersection i4(2.0f, sphere);
-//	std::vector<Intersection> xs = Intersection::intersections(i1, i2, i3, i4);
-//	
-//	Intersection i = Intersection::hit(xs);
-//	REQUIRE(i == i4);
-//}
+
+TEST_CASE("Aggregating intersections", "[intersection][sphere]") {
+	Sphere sphere;
+	Intersection i1(1.0f, &sphere);
+	Intersection i2(2.0f, &sphere);
+	std::vector<Intersection> xs{ i1, i2 };
+
+	REQUIRE(xs.size() == 2);
+	REQUIRE(xs[0].t == 1.0f);
+	REQUIRE(xs[1].t == 2.0f);
+}
+
+TEST_CASE("Intersect sets the object on the intersection", "[ray][intersection][sphere]") {
+	Ray ray(Tuple::point(0.0f, 0.0f, -5.0f), Tuple::vector(0.0f, 0.0f, 1.0f));
+	Sphere sphere;
+	std::vector<Intersection> xs = sphere.intersect(ray);
+
+	REQUIRE(xs.size() == 2);
+	REQUIRE(xs[0].object == &sphere);
+	REQUIRE(xs[1].object == &sphere);
+}
+
+TEST_CASE("The hit, when all intersectons have positive t", "[intersection][sphere]") {
+	Sphere sphere;
+	Intersection i1(1.0f, &sphere);
+	Intersection i2(2.0f, &sphere);
+	std::vector<Intersection> xs{ i1, i2 };
+
+	std::optional<Intersection> i = Intersection::hit(xs);
+	REQUIRE(i == i1);
+}
+
+TEST_CASE("The hit, when some intersections have negative t", "[intersection][sphere]") {
+	Sphere sphere;
+	Intersection i1(-1.0f, &sphere);
+	Intersection i2(1.0f, &sphere);
+	std::vector<Intersection> xs = { i1, i2 };
+
+	std::optional<Intersection> i = Intersection::hit(xs);
+	REQUIRE(i == i2);
+}
+
+TEST_CASE("The hit, when all intersections have negative t", "[intersection][sphere]") {
+	Sphere sphere;
+	Intersection i1(-2.0f, &sphere);
+	Intersection i2(-1.0f, &sphere);
+	std::vector<Intersection> xs{ i1,i2 };
+
+	std::optional<Intersection> i = Intersection::hit(xs);
+	REQUIRE(i == std::nullopt);
+}
+
+TEST_CASE("The hit is always the lowest nonnegative intersection", "[intersection][sphere]") {
+	Sphere sphere;
+	Intersection i1(5.0f, &sphere);
+	Intersection i2(7.0f, &sphere);
+	Intersection i3(-3.0f, &sphere);
+	Intersection i4(2.0f, &sphere);
+	std::vector<Intersection> xs{ i1, i2, i3, i4};
+
+	std::optional<Intersection> i = Intersection::hit(xs);
+	REQUIRE(i == i4);
+}
 //
 //TEST_CASE("Translating a ray", "[ray]") {
 //	Ray ray(Tuple::point(1.0f, 2.0f, 3.0f), Tuple::vector(0.0f, 1.0f, 0.0f));
