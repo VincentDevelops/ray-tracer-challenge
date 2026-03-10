@@ -174,23 +174,23 @@ TEST_CASE("Changing a sphere's transformation", "[sphere]") {
 
 	REQUIRE(sphere.transform == trans);
 }
-//
-//TEST_CASE("Intersecting a scaled sphere with a ray", "[ray]") {
-//	Ray ray(Tuple::point(0.0f, 0.0f, -5.0f), Tuple::vector(0.0f, 0.0f, 1.0f));
-//	Sphere sphere;
-//	sphere.set_transform(Matrix::scaling(2.0f, 2.0f, 2.0f));
-//	std::vector<Intersection> xs = spere.intersect(ray);
-//
-//	REQUIRE(xs.size() == 2);
-//	REQUIRE(rtc::float_equals(xs[0].t, 3.0f));
-//	REQUIRE(rtc::float_equals(xs[1].t, 7.0f));
-//}
-//
-//TEST_CASE("Intersecting a translated sphere with a ray", "[ray][sphere]") {
-//	Ray ray(Tuple::point(0.0f, 0.0f, -5.0f), Tuple::vector(0.0f, 0.0f, 1.0f));
-//	Sphere sphere;
-//	sphere.set_transform(Matrix::translation(5.0f, 0.0f, 0.0f));
-//	std::vector<Intersection> xs = sphere.intersect(ray);
-//
-//	REQUIRE(xs.size() == 0);
-//}
+
+TEST_CASE("Intersecting a scaled sphere with a ray", "[ray]") {
+	Ray ray(Tuple::point(0.0f, 0.0f, -5.0f), Tuple::vector(0.0f, 0.0f, 1.0f));
+	Sphere sphere;
+	sphere.set_transform(Matrix::scaling(2.0f, 2.0f, 2.0f));
+	std::vector<Intersection> xs = sphere.intersect(ray);
+
+	REQUIRE(xs.size() == 2);
+	REQUIRE(rtc::float_equals(xs[0].t, 3.0f));
+	REQUIRE(rtc::float_equals(xs[1].t, 7.0f));
+}
+
+TEST_CASE("Intersecting a translated sphere with a ray", "[ray][sphere]") {
+	Ray ray(Tuple::point(0.0f, 0.0f, -5.0f), Tuple::vector(0.0f, 0.0f, 1.0f));
+	Sphere sphere;
+	sphere.set_transform(Matrix::translation(5.0f, 0.0f, 0.0f));
+	std::vector<Intersection> xs = sphere.intersect(ray);
+
+	REQUIRE(xs.size() == 0);
+}

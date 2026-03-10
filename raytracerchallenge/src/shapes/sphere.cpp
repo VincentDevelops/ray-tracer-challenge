@@ -6,8 +6,9 @@
 
 
 std::vector<Intersection> Sphere::intersect(Ray ray) {
-	//edge case -- ray originates from inside spere 
 
+	// ray localized
+	ray = ray.transform(transform.inverse());
 
 	// the vector from the sphere's center to the ray origin
 	Tuple sphere_to_ray_vector = ray.origin - Tuple::point(0.0f, 0.0f, 0.0f);
