@@ -9,13 +9,25 @@
 
 struct Sphere {
 	Tuple center = Tuple::point(0.0f, 0.0f, 0.0f);
+
 	Matrix transform = Matrix::identity(4);
+
 	std::size_t radius = 1.0f;
 	
 
-	Sphere() = default;
+	constexpr Sphere() = default;
 
-	std::vector<Intersection> intersect(Ray ray);
+	constexpr Sphere(Matrix& trans) :
+		transform(trans) {}\
+
+	[[nodiscard]] constexpr void set_transform(const Matrix& trans) {
+		transform = trans;
+	}
+
+	[[nodiscard]] std::vector<Intersection> intersect(Ray ray);
+
+
+
 };
 
 #endif // !SPHERE_H

@@ -143,37 +143,37 @@ TEST_CASE("The hit is always the lowest nonnegative intersection", "[intersectio
 	std::optional<Intersection> i = Intersection::hit(xs);
 	REQUIRE(i == i4);
 }
-//
-//TEST_CASE("Translating a ray", "[ray]") {
-//	Ray ray(Tuple::point(1.0f, 2.0f, 3.0f), Tuple::vector(0.0f, 1.0f, 0.0f));
-//	Matrix matrix = Matrix::translation(3.0f, 4.0f, 5.0f);
-//	Ray ray2 = ray.transform(matrix);
-//
-//	REQUIRE(ray2.origin == Tuple::point(4.0f, 6.0f, 8.0f));
-//	REQUIRE(ray2.direction == Tuple::vector(0.0f, 1.0f, 0.0f));
-//}
-//
-//TEST_CASE("Scaling a  ray", "[ray]") {
-//	Ray ray(Tuple::point(1.0f, 2.0f, 3.0f), Tuple::vector(0.0f, 1.0f, 0.0f));
-//	Matrix matrix = Matrix::scaling(2.0f, 3.0f, 4.0f);
-//	Ray ray2 = ray.transform(matrix);
-//
-//	REQUIRE(ray2.origin == Tuple::point(2.0f, 6.0f, 12.0f));
-//	REQUIRE(ray2.direction == Tuple::vector(0.0f, 3.0f, 0.0f));
-//}
-//
-//TEST_CASE("A sphere's default transformation", "[sphere]") {
-//	Sphere sphere;
-//	REQUIRE(sphere.transform == Matrix::identity(4));
-//}
-//
-//TEST_CASE("Changing a sphere's transformation", ["sphere"]) {
-//	Sphere sphere;
-//	Matrix trans = Matrix::translation(2.0f, 3.0f, 4.0f);
-//	sphere.set_transform(trans);
-//
-//	REQUIRE(s.transform == trans);
-//}
+
+TEST_CASE("Translating a ray", "[ray]") {
+	Ray ray(Tuple::point(1.0f, 2.0f, 3.0f), Tuple::vector(0.0f, 1.0f, 0.0f));
+	Matrix matrix = Matrix::translation(3.0f, 4.0f, 5.0f);
+	Ray ray2 = ray.transform(matrix);
+
+	REQUIRE(ray2.origin == Tuple::point(4.0f, 6.0f, 8.0f));
+	REQUIRE(ray2.direction == Tuple::vector(0.0f, 1.0f, 0.0f));
+}
+
+TEST_CASE("Scaling a  ray", "[ray]") {
+	Ray ray(Tuple::point(1.0f, 2.0f, 3.0f), Tuple::vector(0.0f, 1.0f, 0.0f));
+	Matrix matrix = Matrix::scaling(2.0f, 3.0f, 4.0f);
+	Ray ray2 = ray.transform(matrix);
+
+	REQUIRE(ray2.origin == Tuple::point(2.0f, 6.0f, 12.0f));
+	REQUIRE(ray2.direction == Tuple::vector(0.0f, 3.0f, 0.0f));
+}
+
+TEST_CASE("A sphere's default transformation", "[sphere]") {
+	Sphere sphere;
+	REQUIRE(sphere.transform == Matrix::identity(4));
+}
+
+TEST_CASE("Changing a sphere's transformation", "[sphere]") {
+	Sphere sphere;
+	Matrix trans = Matrix::translation(2.0f, 3.0f, 4.0f);
+	sphere.set_transform(trans);
+
+	REQUIRE(sphere.transform == trans);
+}
 //
 //TEST_CASE("Intersecting a scaled sphere with a ray", "[ray]") {
 //	Ray ray(Tuple::point(0.0f, 0.0f, -5.0f), Tuple::vector(0.0f, 0.0f, 1.0f));
