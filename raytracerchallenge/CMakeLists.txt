@@ -39,7 +39,7 @@ add_library(rtc
   "src/shapes/sphere.h" 
   "src/shapes/sphere.cpp"
   "src/geometry/intersection.h" 
-   "src/geometry/intersection.cpp")
+   "src/geometry/intersection.cpp" "src/practice/chapter5_rays.h")
 
 add_executable(raytracerchallenge
   "src/raytracerchallenge.cpp" 
@@ -59,7 +59,7 @@ add_executable(raytracerchallenge
   "src/geometry/ray.cpp" 
   "src/shapes/sphere.h" 
   "src/shapes/sphere.cpp"
-  "src/geometry/intersection.h" "src/geometry/intersection.cpp") 
+  "src/geometry/intersection.h" "src/geometry/intersection.cpp" "src/practice/chapter5_rays.h") 
 
 target_link_libraries(raytracerchallenge PRIVATE rtc)
 
